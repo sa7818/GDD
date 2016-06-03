@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=6721&Year=1995&Month=1&Day=1&timeframe=2&submit=Download+Data
 http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=6721&Year=1994&Month=6&Day=1&timeframe=2&submit=Download+Data
 http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=6721&Year=1993&Month=1&Day=1&timeframe=2&submit=Download+Data
@@ -6,3 +7,6 @@ http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=
 http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=6721&Year=1990&Month=1&Day=1&timeframe=2&submit=Download+Data
 http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=6721&Year=1989&Month=1&Day=1&timeframe=2&submit=Download+Data
 http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=6721&Year=1988&Month=6&Day=1&timeframe=2&submit=Download+Data
+=======
+
+>>>>>>> 2008c4eab21a1acd23247613f79bebf5fde5238d
