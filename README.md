@@ -1,3 +1,4 @@
+# GDD
 Growing degree days (GDD), also called growing degree units (GDUs), are a heuristic tool in phenology. GDD are a measure of heat accumulation used by horticulturists, gardeners, and farmers to predict plant and animal development rates such as the date that a flower will bloom, or a crop will reach maturity.
 
 In this project we going to do an extended work on the GDD on three different city.
