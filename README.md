@@ -9,3 +9,4 @@ The workflow for the project is as follow:
 4. Storing calculations in DB or files
 5. Creating plot showing an annual cycle of min/max daily temperatures.
 6. Producing reports based on the generated plots.
+7. Presentation
