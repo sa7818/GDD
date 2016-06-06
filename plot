@@ -54,21 +54,21 @@ plt.legend(handles=[maxy,mint])
 plt.title("St.john's 2015 temp")
 plt.ylabel("temp")
 plt.xlabel("date")
-
+plt.show()
 
 # Three City's 2015 temp showed in three sub-plot
+plt.subplot(3,1,1)
 dates,max_temp,min_temp=read_weather('TORONTO _CITY.csv')
 maxy=plt.plot_date(dates,max_temp,'ro-',label="max temp")
 mint=plt.plot_date(dates,min_temp,'cx-',label="min temp")
 plt.title("Toronto_city 2015 temp")
-plt.subplot(3,1,1)
 
+plt.subplot(3,1,2)
 dates2,max_temp2,min_temp2=read_weather('ALBERTA.csv')
 maxy2=plt.plot_date(dates2,max_temp2,'ro-',label="max temp")
 mint2=plt.plot_date(dates2,min_temp2,'cx-',label="min temp")
 plt.title("Alberta 2015 temp")
 plt.ylabel("temp")
-plt.subplot(3,1,2)
 
 
 dates3,max_temp3,min_temp3=read_weather('ST.JOHNS.csv')
@@ -78,6 +78,4 @@ plt.title("St.john's 2015 temp")
 plt.ylabel("temp")
 plt.subplot(3,1,3)
 
-
-plt.show()
 plt.show()
