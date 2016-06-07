@@ -3,7 +3,7 @@ import urllib
 import requests
 
 def download_file():
-#takes id and year of a station as argument and download weather file from the url.
+#Download CSV file from the url provided in the code
 	station_Ids=[50089,5051,27211]
 	years=[2015,2016]
 	city=""
