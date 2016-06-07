@@ -1,4 +1,5 @@
 #CMSC6950 course project
+SRC=./src
 All: Download
 Download:
-	python3 ./src/datafromurl.py
+	$(shell cd $(SRC); python3.5 csvlink.py)
