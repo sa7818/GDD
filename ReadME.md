@@ -1,10 +1,27 @@
-ReadME.md
+The goal of this project is to calculate GDD for three cities in Canada(St John's,Calgary,Toronto)
+The workflow for the project is as follow:
+
+    Automation for downloading tempreture data
+
+    Extracting required columns from data files
+
+    Calculating GDD (via command line program)
+
+    Storing calculations in DB or files
+
+    Creating plot showing an annual cycle of min/max daily temperatures.
+
+    Producing reports based on the generated plots.
+
+    Presentation
 
 
-###### The goal of this project is to calculate GDD for three cities in Canada( St.John's , Toronto, Calgary) for two years.
 
-- GDD Project Version 1.0.0
-                     The Project exists in Github repository(https://github.com/sa7818/GDD)
+
+- GDD Project:
+                     Version 1.0.0:
+
+                     The Project exists in Github repository(https://github.com$
 ###### System Requirenments:
                       Linux/Mac
                       Python Python( 3.5.1 )
@@ -22,6 +39,7 @@ ReadME.md
 - Oluwatosin Ifeoluwa Adelegan   Email:oia133@mun.ca
 
 - File List(Directories):
+
 <pre>
 /Readme.md
 /Makefile
@@ -34,10 +52,4 @@ ReadME.md
 /gdd.py
 /main.py
 /testsuite.py
-/latex.tex
-</pre>
-----------
-<pre>
-/csv_data/
-/st_johns
 </pre>
