@@ -21,7 +21,7 @@ The workflow for the project is as follow:
 - GDD Project:
                      Version 1.0.0:
 
-                     The Project exists in Github repository(https://github.com$
+               The Project exists in Github repository(https://github.com/sa7818/GDD)
 ###### System Requirenments:
                       Linux/Mac
                       Python Python( 3.5.1 )
