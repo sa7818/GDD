@@ -1,31 +1,33 @@
-New
--------------------------------------------ReadME.txt-------------------------------------
-The goal of this project is to calculate GDD for three cities in
-Canada( St.John's , Toronto, Calgary) for two years.
+ReadME.md
 
-GDD Project Version 1.0.0
+
+###### The goal of this project is to calculate GDD for three cities in Canada( St.John's , Toronto, Calgary) for two years.
+
+- GDD Project Version 1.0.0
                      The Project exists in Github repository(https://github.com/sa7818/GDD)
-System Requirenments:
+###### System Requirenments:
                       Linux/Mac
                       Python Python( 3.5.1 )
                       Latex/TexStudio
                       HTML(Web Based Presentation)
 
-Contact Information:
+######  Contact Information:
 
-Sara Ayubian                   Email:sa7818@mun.ca
-Ghasem Alaee                   Email:gak488@mun.ca
-Faramarz Dorani                Email:fd6713@mun.ca
-Stanley Uche Godfrey           Email:sug670@mun.ca
-SharonQSY                      Email:sq5222@mun.ca
-Lianboli                       Email:ll4734@mun.ca
-Oluwatosin Ifeoluwa Adelegan   Email:oia133@mun.ca
+- Sara Ayubian                   Email:sa7818@mun.ca
+- Ghasem Alaee                   Email:gak488@mun.ca
+- Faramarz Dorani                Email:fd6713@mun.ca
+- Stanley Uche Godfrey           Email:sug670@mun.ca
+- SharonQSY                      Email:sq5222@mun.ca
+- Lianboli                       Email:ll4734@mun.ca
+- Oluwatosin Ifeoluwa Adelegan   Email:oia133@mun.ca
 
-File List(Directories):
-
+- File List(Directories):
+<pre>
 /Readme.md
 /Makefile
+</pre>
 ---------
+<pre>
 /src/
 /download.py
 /plot.py
@@ -33,8 +35,9 @@ File List(Directories):
 /main.py
 /testsuite.py
 /latex.tex
+</pre>
 ----------
+<pre>
 /csv_data/
 /st_johns
-/st_johns/2016.csv
-
+</pre>
