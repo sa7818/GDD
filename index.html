@@ -14,7 +14,27 @@
         font-weight: normal;
       }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+
+      .myownstyles {background-color: #EEE}
+      .red {color: red;}
+      .red .bold {font-weight: bold;}
+      .footnote {font-size: 0.7em; color: gray;}
+    
     </style>
+
+    <!-- Including highligh.js library -->
+    <!--
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/default.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
+    -->
+
+    <!-- 
+    <link rel="stylesheet" type="text/css" href="default.min.css">
+    <script type="text/javascript" src="highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+    -->
+
   </head>
   <body>
     <textarea id="source">
@@ -77,7 +97,55 @@ class: center
 2. Markdown formatting
 
 ---
+# Content classes
+.footnote[.red.bold[*] Important footnote]
 
+**This text _is extremely_ important.**
+## heading 2
+### heading 3
+#### heading 4
+
+Some basic Git commands are:
+```
+git status
+git add
+git commit
+```
+
+---
+### Syntax Highlighting
+
+Code:
+
+```python
+@require_authentication
+def add(a,b):
+  return len(a) + len(b)
+```
+
+.red.bold[And for ruby]
+
+```ruby
+def add(a,b)
+  a + len(b)
+end
+```
+
+---
+# highlight.js
+<pre><code class="python">@requires_authorization
+def add_ar(lst):
+  return sum(lst)
+</code></pre>
+
+#### something more
+```python
+def add_ar(lst):
+  return sum(lst)
+```
+
+
+---
 <!-- Next slide -->
 # Object Literals
 .remark-slide-content:after {
@@ -103,16 +171,17 @@ This slide will not be counted.
 
 
     </textarea>
-    <!-- in case if wanted to use offline. -->
-    <script src="remark-latest.min.js"> </script>
-    
-    <!--
+    <!-- in case if wanted to use offline.
+    <script src="./remark.js"> </script>
+    -->
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
     </script>
-    -->
-
     <script>
-      var slideshow = remark.create();
+      var slideshow = remark.create({
+        highlightLanguage: 'python',
+        highlightStyle: 'github',
+        highlightSpans: true
+      });
     </script>
   </body>
 </html>
