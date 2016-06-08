@@ -9,7 +9,6 @@ def test_download():
 	
 	exp = 5
 	obs = 5
-	#assert exp == obs
 	assert_equal(exp, obs)
 
 """Testing the plot function"""
