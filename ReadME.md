@@ -1,4 +1,4 @@
-The goal of this project is to calculate GDD for three cities in Canada(St John's,Calgary,Toronto)
+The goal of this project is to calculate GDD for three cities in Canada (St John's, Calgary, Toronto)
 The workflow for the project is as follow:
 
     Automation for downloading tempreture data
@@ -15,7 +15,9 @@ The workflow for the project is as follow:
 
     Presentation
 
-
+<br>
+To view the web presentation [click heree](https://sa7818.github.io/GDD/)
+<br>
 
 
 - GDD Project:
