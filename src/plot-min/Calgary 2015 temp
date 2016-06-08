@@ -1,0 +1,35 @@
+import numpy as np
+import matplotlib.pyplot as pyplot
+from datetime import datetime
+import matplotlib.pyplot as plt
+import matplotlib.dates as dt
+from pandas import Series, DataFrame
+import pandas as pd
+import csv
+#data_url = "1.csv"
+#df = pd.read_csv(data_url)
+           
+def read_weather(file_name):
+    data=pd.read_csv(file_name, skiprows=25,usecols=(0,6,8),encoding='ISO-8859-1')
+    data=data[data!='E']
+    data=data.dropna(how='any')
+    Date=data['Date/Time']
+    Max_Temp=data['Max Temp Flag']
+    Mix_Temp=data['Min Temp Flag'] 
+    
+    
+    return Date,Max_Temp, Mix_Temp
+
+import pandas as pd
+date,max_temp,min_temp=read_weather('/csv_data/calgary/2015.CSV')
+max_temp=max_temp.astype(float)
+min_temp=min_temp.astype(float)
+date=pd.to_datetime(date)
+maxy,=plt.plot_date(date,max_temp,'ro-',label="max temp")
+mint,=plt.plot_date(date,min_temp,'cx-',label="min temp")
+plt.legend(handles=[maxy,mint])
+plt.title("Calgary 2015 temp")
+plt.ylabel("temp")
+plt.xlabel("date")
+plt.savefig('Calgary 2015')
+plt.show()
