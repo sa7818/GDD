@@ -34,7 +34,7 @@ plt.title("Calgary 2015 temp")
 plt.ylabel("temp")
 
 import pandas as pd
-date,max_temp,min_temp=read_weather2('2015.csv')
+date,max_temp,min_temp=read_weather2('/csv_data/st_johns/2015.csv')
 max_temp=max_temp.astype(float)
 min_temp=min_temp.astype(float)
 date=pd.to_datetime(date)
@@ -48,7 +48,7 @@ plt.savefig("St.johns 2015 temp",format="png")
 plt.show()
 
 import pandas as pd
-date,max_temp,min_temp=read_weather2('2015.csv')
+date,max_temp,min_temp=read_weather2('/csv_data/toronto/2015.csv')
 max_temp=max_temp.astype(float)
 min_temp=min_temp.astype(float)
 date=pd.to_datetime(date)
