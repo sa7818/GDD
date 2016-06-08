@@ -32,15 +32,12 @@ con3 = False  # for tupper
 args = parser.parse_args()
 if args.list:
     file_dir = "../csv_data/"
-    print("List of cities:")
+    print("List of files:")
     print("---------------------------------------------------")
-    cities = os.listdir(file_dir)
-    for c in cities:
-	print("{0}:".format(c))
-	pattern = file_dir + c + "/*.*"
-	files_in_city = glob.glob(pattern)
-	for f in files_in_city:
-	    print("{0}".format(f))
+    pattern = file_dir + "/*.CSV"
+    files_in_city = glob.glob(pattern)
+    for f in files_in_city:
+	print("{0}".format(f))
 
 if args.gdd:
     conA = True
