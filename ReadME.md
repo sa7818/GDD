@@ -16,7 +16,7 @@ The workflow for the project is as follow:
     Presentation
 
 <br>
-To view the web presentation [click heree](https://sa7818.github.io/GDD/)
+To view the web presentation [click here](https://sa7818.github.io/GDD/)
 <br>
 
 
