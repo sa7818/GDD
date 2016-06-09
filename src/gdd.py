@@ -20,7 +20,6 @@ def Main():
     args = parser.parse_args()
     
     result = gdd_calc(args.filename, args.numeric, args.numeric1)
-    print ("The fib number is ", + str(result))
 
 if __name__ == '__main__':
     Main()
