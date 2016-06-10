@@ -38,8 +38,8 @@ All: report.pdf $(GDDFIGS) $(PLOTFIGS)
 
 report.pdf: $(GDDFIGS) $(PLOTFIGS)
 	echo "Generate report!"
-	pdflatex ./src/GDD.tex
-	pdflatex ./src/GDD.tex
+	pdflatex ./report/GDD.tex
+	pdflatex ./report/GDD.tex
 
 #Calculate GDD and plot GDD graph for each city
 #Usage: python3.5 src/gdd.py <param1> <param2> <param3> <param4> <param5>
