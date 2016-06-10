@@ -43,8 +43,14 @@ To view the web presentation [click here](https://sa7818.github.io/GDD/)
 - File List(Directories):
 
 <pre>
-/Readme.md
-/Makefile
+ 	csv_data 
+	output
+	report 
+	src 
+	.gitignore 	
+	GDDRequirements.md 	
+	Makefile 
+	ReadME.md
 </pre>
 ---------
 <pre>
