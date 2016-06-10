@@ -64,8 +64,11 @@ def generate_gdd(filename, t_base, t_upper):
     return f_name
     #print(df)
 
-filename = sys.argv[1]
-tbase = sys.argv[2]
-tupper = sys.argv[3]
-generate_gdd(filename, tbase,tupper)
+try:
+    filename = sys.argv[1]
+    tbase = sys.argv[2]
+    tupper = sys.argv[3]
+    generate_gdd(filename, tbase,tupper)
+except:
+    print("Enter the parameters correctly")
 
