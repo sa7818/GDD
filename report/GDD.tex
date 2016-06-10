@@ -1,0 +1,89 @@
+\documentclass[DIV=calc, paper=a4, fontsize=11pt, twocolumn]{scrartcl}	 
+%\usepackage[english]{babel} 
+\usepackage[protrusion=true,expansion=true]{microtype} 
+\usepackage{amsmath,amsfonts,amsthm} 
+\usepackage[svgnames]{xcolor} 
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} 
+\usepackage{booktabs} 
+\usepackage{fix-cm}	 
+\usepackage{sectsty} 
+\allsectionsfont{\usefont{OT1}{phv}{b}{n}}
+\usepackage{fancyhdr} 
+\pagestyle{fancy} 
+\usepackage{lastpage}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize Page \thepage\ of \pageref{LastPage}} 
+\renewcommand{\headrulewidth}{0.0pt} 
+\renewcommand{\footrulewidth}{0.4pt} 
+\usepackage{lettrine}
+\newcommand{\initial}[1]{ 
+\lettrine[lines=3,lhang=0.3,nindent=0em]{
+\color{DarkGoldenrod}
+{\textsf{#1}}}{}}
+\newcommand*{\affaddr}[1]{#1}
+\newcommand*{\affmark}[1][*]{\textsuperscript{#1}}
+\newcommand*{\email}[1]{\texttt{#1}}
+%------------------------------
+%	TITLE SECTION
+%------------------------------
+\usepackage{titling} 
+\newcommand{\HorRule}{\color{DarkGoldenrod} \rule{\linewidth}{1pt}}
+\pretitle{\vspace{-30pt} \begin{flushleft} \HorRule \fontsize{50}{50} \usefont{OT1}{phv}{b}{n} \color{DarkRed} \selectfont} 
+\title{GDD in Canada}
+\posttitle{\par\end{flushleft}\vskip 0.5em}
+\preauthor{\begin{flushleft}\large \lineskip 0.5em \usefont{OT1}{phv}{b}{sl} \color{DarkRed}} 
+\author{Sara Ayubian\affmark[1],Ghasem Alaee Khangha \affmark[1],Faramarz Dorani\affmark[1],
+Stanley Uche Godfrey\affmark[1],Oluwatosin Adelegan\affmark[1]
+Shuyue Qi\affmark[1],Lianbo li\affmark[1]}
+\postauthor{\color{Black} \\
+\centering{Memorial University of Newfoundland}\\\centering{\color{Blue}Instructor: Dr.James Munroe} 
+\\
+\centering{Computer Based Research Tools and Application}
+\par\end{flushleft}\HorRule}
+\date{Spring 2016} 
+%-------------------------------------------------------------
+\begin{document}
+\maketitle 
+\thispagestyle{fancy} 
+%----------------------------
+%	ABSTRACT
+%----------------------------
+\initial{T}\textbf{he Goal of this study is the calculation of GDD (Groawing Degree Days in Canada) specifically in three cities such as St.John's, Toronto and Calgary for two years. Each step can be found in http://github.come/sa7818/GDD as a public repository. Results demonstrates that GDD is an usefull method for many application}
+%---------------------------
+%	ARTICLE CONTENTS
+%---------------------------
+\section{Introduction}
+Heat Unit, can be described by GDD (Growing Degree Days) and it used to express the timing of biological processes. There exists a basic equation in order to calculate the GDD for specific plant and animal which is as follow:
+\begin{equation}
+GDD =\frac {T_{max}+T_{min}}{2}-T_{base}
+\end{equation}
+Where $T_{max}$ and $T_{min}$ are daily maximum and minimum air temperature respectively, and $T_{base}$ is the base temperature.
+%-----------------------------------------------
+\section{Steps}
+\begin{itemize}
+\item Automation for downloading tempreture data
+\item Extracting required columns from data files
+\item Calculating GDD (via command line program)
+\item Storing calculations in DB or files
+\item Creating plot showing an annual cycle of min/max daily temperatures.
+\item Producing reports based on the generated plots.
+\item Presentation
+\end{itemize}
+%------------------------------------------------
+\section{Results}
+\section{Conclusion}
+The present study works on three cities in Canada in order to calculate growing degree days for each city and plot them using Python programming. Data have been collected from government page which are available for any years,months,days and hours.
+%-------------------------
+%	REFERENCE LIST
+%---------------------------
+\begin{thebibliography}{99}
+\bibitem{https://en.wikipedia.org/wiki/Growing_degree-day}
+\newblock Assortative pairing and life history strategy - a cross-cultural
+  study.
+\newblock {\em Human Nature}, 20:317--330.
+ \end{thebibliography}
+\end{document}

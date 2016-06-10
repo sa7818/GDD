@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GDD web-based presentation</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+name: GDD
+class: center, middle, inverse
+background-color: #AAA
+
+# {{ name }} web-based presentation
+.left[Left-aligned The name of this slide is {{ name }}]
+
+<!-- <br><br><br> --> 
+<!-- #### by [@fd6713] &amp; Gak488 &amp; ll4734 &amp; oia133 &amp; sug670 &amp; sq5222  &amp; sa7818 -->
+<!-- ??? -->
+
+---
+
+# Agenda
+
+1. Introduction
+2. Downloading data
+3. Extracting required columns
+4. Calculating GDD
+5. Plotting GDD for one or more years
+6. 
+
+
+---
+<!-- Next slide -->
+# Introduction
+.center[![Centered image](plot2.jpeg "St. Johns Min-Max Temp Plot")]
+
+
+---
+<!-- Next slide -->
+
+# Slide
+
+- bullet 1
+--
+
+- bullet 2
+
+
+---
+<!-- Next slide -->
+
+class: center
+
+# Plot
+
+.center[Centered Hello world]
+
+---
+# numbering
+
+--
+1. Introduction
+
+--
+2. Markdown formatting
+
+---
+
+<!-- Next slide -->
+# Object Literals
+.remark-slide-content:after {
+content: "";
+position: absolute;
+bottom: 10px;
+right: 10px;
+height: 40px;
+width: 120px;
+background-repeat: no-repeat;
+background-size: contain;
+background-image: url('img1.png;base64,some_strings');
+}
+
+---
+# Presentation
+???
+help notes for presentation. Tapping on P goes to presentaiton mode
+---
+count: false
+
+This slide will not be counted.
+
+
+    </textarea>
+    <!-- in case if wanted to use offline.
+    <script src="./remark.js"> </script>
+    -->
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
