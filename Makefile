@@ -41,6 +41,7 @@ report.pdf: $(GDDFIGS) $(PLOTFIGS)
 	pdflatex ./report/GDD.tex
 	pdflatex ./report/GDD.tex
 	#bibtex  ./report/GDD.tex
+	pdflatex ./report/GDD.tex
         
 
 	
