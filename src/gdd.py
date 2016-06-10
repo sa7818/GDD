@@ -1,62 +1,71 @@
 import sys
-import numpy as np
-import matplotlib.pyplot as pyplot
-from datetime import datetime
-import matplotlib.pyplot as plt
-import matplotlib.dates as dt
+import os.path
+import csv
 import pandas as pd
-import pickle
-
-def calculate_gdd(filename,t_base,t_upper):
-    Date,Max_Temp, Min_Temp=read_weather(filename)
-    Max_Temp=Max_Temp.astype(float)
-    Min_Temp=Min_Temp.astype(float)
-    Total=Max_Temp+Min_Temp
-    average=Total/2
-    calcu_gdd=average-t_base
-    gdd=(Max_Temp+Min_Temp)/2-t_base
-    accumu_gdd=accu_gdd(Date,gdd)
-    #print (accumu_gdd)
-    Date,accumu_gdd=accu_gdd(Date,gdd)
-    new_csv=np.array([
-            ('Date',Date),
-            ('Max_Temp',Max_Temp),
-            ('Min_Temp',Min_Temp),
-            ('calcu_gdd',calcu_gdd),
-            ('accumu_gdd',accumu_gdd),
-            ])
-    return Date,Max_Temp,Min_Temp,calcu_gdd,accumu_gdd
-    #return new_csv
-    
 
 def fetch_csv(file_name):
-	#Read csv file
-   	try:
-		data = pd.read_csv(file_name, usecols=(0,1,2),encoding='ISO-8859-1')
-		return data
-	except:
-		print("Unexpected error:", sys.exc_info()[0])
-		raise
+    #Read csv file
+    try:
+        data = pd.read_csv(file_name,encoding='ISO-8859-1')
+        return data
+    except OSError as err:
+        print("OSError : {0}".format(err))
+    except:
+        print("Unexpected error:", sys.exc_info()[0])
+        raise
 
-def print_csv(data):
-	print(data)
+def generate_gdd(filename, t_base, t_upper):
+    t_base = int(t_base)
+    t_upper = int(t_upper)
+    if os.path.isfile(filename):
+        print("~ Filename: {} exists!".format(filename))
+        csv = fetch_csv(filename)
+    # Iterate through the fetched file and calculate gdd
+    mean_col = csv['Mean_Temp']
+    date_cols = csv[['Year', 'Month','Day']]
+    columns = ['Year', 'Month','Day', 'GDD', 'Acc_GDD']
+    df = pd.DataFrame(columns = columns)
+    df['Year'] = date_cols['Year']
+    df['Month'] = date_cols['Month']
+    df['Day'] = date_cols['Day']
+    i = 0
+    # calculating GDD column
+    for m in  mean_col:
+        gdd = int(m) - t_base
+        if gdd < 0:
+            gdd = 0
+        elif gdd > t_upper:
+            gdd = t_upper
+        df['GDD'][i] = gdd
+        i+=1
+    # Calculating ACC_GDD column
+    j = 0
+    for g in df['GDD']:
+        if j == 0:
+            df['Acc_GDD'][j] = df['GDD'][0]
+        else:
+            df['Acc_GDD'][j] = int(g) + df['Acc_GDD'][j - 1] 
+        j+=1
+    
+    
+    # create a csv out of a dataframe
+    
+    
+    #df['GDD'] = date_cols
+    df = df.fillna(0)
+    f_name = "50089_2015.csv" [:-4]
+    f_name = f_name + ".gdd"
+    try:
+        df.to_csv("../csv_data/" + f_name)
+    except:
+        print("Something went wrong!")
+    
+    print("{0} is created.".format(f_name))
+    return f_name
+    #print(df)
 
-def accu_gdd(Date,gdd):
-    gdd[gdd<0]=0
-    #accu_gdd=range(1,Date)
-    accu_gdd=0
-    list_accu_gdd=np.array([])
-    for i in gdd:        
-        accu_gdd=accu_gdd+i       
-        list_accu_gdd=np.append(list_accu_gdd,accu_gdd)  
-        #list_accu_gdd=list_accu_gdd.astype(float)
-    return Date,list_accu_gdd
-
-def main(argv):
-    # My code here
-    pass
-
-if __name__ == "__main__":
-    main(sys.argv)
-
+filename = sys.argv[1]
+tbase = sys.argv[2]
+tupper = sys.argv[3]
+generate_gdd(filename, tbase,tupper)
 
