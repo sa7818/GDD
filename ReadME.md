@@ -1,3 +1,5 @@
+## Growing Degree Days in Canada
+
 The goal of this project is to calculate GDD for three cities in Canada (St John's, Calgary, Toronto)
 - The workflow for the project is as follow:
 
