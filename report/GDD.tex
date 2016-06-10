@@ -56,7 +56,7 @@ Sharon QSY\affmark[1],Lianboli\affmark[1]}
 %----------------------------
 \section{Abstract}
 
-\initial{P}lants development depend on temperature and they require a specific amount of heat to develop from one point in their life-cycle to another, such as from seeding to the four-leaf stage. The Growing Degree Day, or GDD, is a heat unit that can be used to predict the timing of biological processes. The present study demonstrates the process of downloading data related to the maximum and minimum temperatures to calculate GDD for three cities (St.John's, Calgary and Toronto) in two years. These steps can be found in http://github.come/sa7818/GDD in a public repository.
+\initial{T}he Growing Degree Day, or GDD, is a heat unit that can be used to predict the timing of biological processes. The present study demonstrates the process of downloading data related to the maximum and minimum temperatures to calculate GDD for three cities (St.John's, Calgary and Toronto) in one years. These steps can be found in http://github.come/sa7818/GDD in a public repository.
 	
 	
 	
@@ -71,7 +71,8 @@ Heat Unit, can be described by GDD (Growing Degree Days) and it used to express 
 GDD =\frac {T_{max}+T_{min}}{2}-T_{base}
 \end{equation}
 
-Where $T_{max}$ and $T_{min}$ are daily maximum and minimum air temperature respectively, and $T_{base}$ is the base temperature.To begin with,user needs to download daily historical temperature data for three cities in Canada(St.John's, Calgary and Toronto) from http://climate.weather.gc.ca in one year and extracts those .csv files in different columns, and then these processes can be done by using Python.
+Where $T_{max}$ and $T_{min}$ are daily maximum and minimum air temperature respectively, and $T_{base}$ is the base temperature.\\
+To begin with,user needs to download daily historical temperature data for three cities in Canada(St.John's, Calgary and Toronto) from http://climate.weather.gc.ca in one year and extracts those .csv files and save them in related columns, and then these processes can be done by using Python.
 The next step for illustrating and analyzing data is to plot GDD for those three cities based on one year which shows the annual cycle of min/max daily tempratures.
 
 The measure of GDD becomes more important as it shows the heat energy available for development and also it demonstrates the biological events that typically occur after a required number of GDDs. The use of GDD is indisputable for agriculture, as farmers can use this measure to determine the maturity of certain species and when their crops should be ready to harvest.
@@ -90,7 +91,7 @@ The goal of this study is mainly based on team work to split tasks and learn how
 \item Extracting required columns from data files.
 \item Calculating GDD (via command line program).
 \item Storing calculations in .csv files
-\item Creating plot shows an annual cycle of min/max daily temperatures.
+\item Creating plot showing an annual cycle of min/max daily temperatures.
 \item Producing reports based on the generated plots.
 \item Preparing web Presentation.
 \end{itemize}
