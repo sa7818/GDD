@@ -53,7 +53,7 @@ def generate_gdd(filename, t_base, t_upper):
     
     #df['GDD'] = date_cols
     df = df.fillna(0)
-    f_name = "50089_2015.csv" [:-4]
+    f_name = filename[:-4]
     f_name = f_name + ".gdd"
     try:
         df.to_csv("../csv_data/" + f_name)
