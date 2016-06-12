@@ -78,4 +78,20 @@ csv_data/
  	GDD.tex
  </pre>
 
+## USER GUIDE
+<p> To run this project, you must have the following packages installed on your python 2.7 or 3x environment:
+	pip
+	pandas
+	sys
+	urllib.request
+</p>
+
+##CLONING THIS REPOSITORY:
+<p> To clone this repository, do the following:
+	cd ~ or cd ~/<Workspace>
+	git clone https://github.com/sa7818/GDD.git
+</p>
+
+<br> After cloning run <b>make</b> from the cloned repository
+</br>
  Please feel free to contact us for more information...
