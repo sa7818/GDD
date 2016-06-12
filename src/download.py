@@ -5,7 +5,7 @@ import pandas as pd
 
 
 """ Script for downloading data
-    this function if there is no erros, it will save a file 
+    this function in case if there is no errors, it will download and then save a csv file 
     that has the required columns for our further calculations and plots.
     
 Args:
