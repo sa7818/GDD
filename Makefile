@@ -43,7 +43,10 @@ report.pdf: $(GDDFIGS) $(PLOTFIGS)
 	#bibtex  ./report/GDD.tex
 	pdflatex ./report/GDD.tex
         
-
+.PHONY: test
+test:
+	echo "Test modules"
+	nosetests $(SRC)/testsuite
 	
 
 #Calculate GDD and plot GDD graph for each city
