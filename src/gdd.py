@@ -3,6 +3,13 @@ import os.path
 import csv
 import pandas as pd
 
+
+""" A function to fetch a csv file.
+
+Args:
+	file_name (string): the relat
+
+"""
 def fetch_csv(file_name):
     #Read csv file
     try:
@@ -46,12 +53,8 @@ def generate_gdd(filename, t_base, t_upper):
         else:
             df['Acc_GDD'][j] = int(g) + df['Acc_GDD'][j - 1] 
         j+=1
-    
-    
     # create a csv out of a dataframe
-    
-    
-    #df['GDD'] = date_cols
+
     df = df.fillna(0)
     f_name = "50089_2015.csv" [:-4]
     f_name = f_name + ".gdd"
@@ -59,11 +62,11 @@ def generate_gdd(filename, t_base, t_upper):
         df.to_csv("../csv_data/" + f_name)
     except:
         print("Something went wrong!")
-    
     print("{0} is created.".format(f_name))
     return f_name
     #print(df)
 
+# Entry point of gdd functionality:
 try:
     filename = sys.argv[1]
     tbase = sys.argv[2]
