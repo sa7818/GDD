@@ -3,11 +3,14 @@ import os.path
 import csv
 import pandas as pd
 
-
 """ A function to fetch a csv file.
 
 Args:
-	file_name (string): the relat
+	file_name (string): the relative path of a csv file 
+			     which is downloaded from server.
+Returns:
+	DataFrame: this dataframe is returned when the csv file exists in
+		   ../csv_data/ directory.
 
 """
 def fetch_csv(file_name):
@@ -20,6 +23,20 @@ def fetch_csv(file_name):
     except:
         print("Unexpected error:", sys.exc_info()[0])
         raise
+
+""" A function to generate a  *.gdd file in the same directory of ../csv_data/
+
+Args:
+	filename (String): the file name that has be .csv
+	t_base (int):	   this parameter has to be the base temp for gdd.
+	t_upper (int):	   this parameter is as a threshold that 
+			   we use in our calculation.
+
+Returns:
+	string: filename of a *.gdd file
+
+"""
+
 
 def generate_gdd(filename, t_base, t_upper):
     t_base = int(t_base)
