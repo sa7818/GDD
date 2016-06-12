@@ -8,8 +8,6 @@ from download import download
 	This file should not be mentioned in Makefile.
 	The procedure is self-explanatory and it gets its input from user.
 	User should know the desired Station IDs for completing this task.
-
-
 """
 # global variables
 sids = [0, 0]
@@ -42,9 +40,7 @@ def main():
 	print("GDD calculation is done.")
 	print("Now ploting...")
 	# ploting 2 gdd files together
-
 	
-
 
 def get_info():
 	print("Enter the information for comparing 2 stations in 2 years:")
