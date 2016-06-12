@@ -4,7 +4,17 @@ import sys
 import pandas as pd
 
 
-""" Script for downloading data """
+""" Script for downloading data
+    this function if there is no erros, it will save a file 
+    that has the required columns for our further calculations and plots.
+    
+Args:
+	stationid (int):  this parameter is for the station id of a specific city
+	year (int):	  this parameter is for specifying a year for the data
+	
+Return:
+	string: this is a string value that defines the *.csv file that was downloaded/stored.
+"""
 def download(stationid, year):
 	print("Started downloading ...")
 	print("Data for station with id {} for year {}".format(stationid, year))
