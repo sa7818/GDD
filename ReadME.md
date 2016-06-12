@@ -78,7 +78,7 @@ csv_data/
  	GDD.tex
  </pre>
 
-##USER GUIDE:
+<b>USER GUIDE:<b>
 <p> To run this project, you must have the following packages installed on your python 2.7 or 3x environment:
 <pre>
 	pip
