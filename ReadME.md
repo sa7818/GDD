@@ -80,18 +80,22 @@ csv_data/
 
 ## USER GUIDE
 <p> To run this project, you must have the following packages installed on your python 2.7 or 3x environment:
+<pre>
 	pip
 	pandas
 	sys
 	urllib.request
+</pre>
 </p>
 
 ##CLONING THIS REPOSITORY:
 <p> To clone this repository, do the following:
+<pre>
 	cd ~ or cd ~/<Workspace>
 	git clone https://github.com/sa7818/GDD.git
+</pre>
 </p>
-
-<br> After cloning run <b>make</b> from the cloned repository
+<p><b>N.B:</b> After cloning you need to run <b>make</b> command from the cloned repository to recompile this project(program)
 </br>
- Please feel free to contact us for more information...
+
+<b> Please feel free to contact us for more information...
