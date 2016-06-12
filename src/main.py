@@ -8,6 +8,7 @@ from plot import plot_maxmin
 """ This file works as a command-line 
    ./main.py --list
    ./main.py gdd [filename] [tbase] [tupper]
+   ./main.py plot [filename]
 """
 
 def main():

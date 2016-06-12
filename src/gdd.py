@@ -39,14 +39,21 @@ Returns:
 
 
 def generate_gdd(filename, t_base, t_upper):
-    t_base = int(t_base)
-    t_upper = int(t_upper)
+    tbase = float(t_base)
+    csv_df = pd.DataFrame()
+    if(float(t_upper)  == 0):
+    # We assign a high value beacuse a high value makes this parameter unimportant in our calculations.
+        t_upper = 100
+    else:
+        t_upper = float(t_upper)
+
     if os.path.isfile(filename):
         print("~ Filename: {} exists!".format(filename))
-        csv = fetch_csv(filename)
+        csv_df = fetch_csv(filename)
+
     # Iterate through the fetched file and calculate gdd
-    mean_col = csv['Mean_Temp']
-    date_cols = csv[['Year', 'Month','Day']]
+    mean_col = csv_df['Mean_Temp']
+    date_cols = csv_df[['Year', 'Month','Day']]
     columns = ['Year', 'Month','Day', 'GDD', 'Acc_GDD']
     df = pd.DataFrame(columns = columns)
     df['Year'] = date_cols['Year']
@@ -55,7 +62,7 @@ def generate_gdd(filename, t_base, t_upper):
     i = 0
     # calculating GDD column
     for m in  mean_col:
-        gdd = int(m) - t_base
+        gdd = float(m) - tbase
         if gdd < 0:
             gdd = 0
         elif gdd > t_upper:
@@ -68,7 +75,7 @@ def generate_gdd(filename, t_base, t_upper):
         if j == 0:
             df['Acc_GDD'][j] = df['GDD'][0]
         else:
-            df['Acc_GDD'][j] = int(g) + df['Acc_GDD'][j - 1] 
+            df['Acc_GDD'][j] = float(g) + df['Acc_GDD'][j - 1] 
         j+=1
     # create a csv out of a dataframe
 
