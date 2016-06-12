@@ -9,13 +9,13 @@ The goal of this project is to calculate GDD for three cities in Canada (St John
 
     Calculating GDD (via command line program)
 
-    Storing calculations in DB or files
+    Storing calculations in .csv and .gdd files
 
     Creating plot showing an annual cycle of min/max daily temperatures.
 
     Producing reports based on the generated plots.
 
-    Presentation
+    Presentation (Web-based)
 
 <br>
 To view the web presentation [click here](https://sa7818.github.io/GDD/)
