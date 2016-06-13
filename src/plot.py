@@ -166,7 +166,7 @@ def plot_gdd(filename1, filename2, filename3):
     ax1.plot(index,convert_c_to_f(np.sum(avg_yrs, axis=0)/len(data_to_plot)),label="Long-Term Average",linewidth=2.5, linestyle="-",color="black")
     #To show the legend
     ax1.legend(loc=2,shadow=True)
-    gdd_plot=plt.savefig("plot gdd "+filename1[:-3] + "png",format="png")
+    gdd_plot=plt.savefig("plot_gdd_"+filename1[:-3] + "png",format="png")
     return gdd_plot   #Return the plot gdd image with .png format
     
 
