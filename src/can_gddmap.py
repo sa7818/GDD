@@ -7,14 +7,14 @@ m = Basemap(llcrnrlon=-147.9927,llcrnrlat=45.49,urcrnrlon=-36.4459,urcrnrlat=72.
 # draw coastlines.
 m.drawcoastlines()
 # draw a boundary around the map, fill the background.
-m.drawmapboundary(fill_color='#99ffff')
+m.drawmapboundary(fill_color='#88cfff')
 
-m.fillcontinents(color='#cc9966',lake_color='#99ffff')
+m.fillcontinents(color='#dd9966',lake_color='#77cfff')
 
 lons = [-135.5334459, -123.9771791, -114.6620176, -104.4696027, -93.7388446, -77.412585, -69.2013865 ]
 lats = [53.8330847, 54.1767615, 54.1780536, 54.1781594, 48.932973, 53.4633181, 53.1650697 ]
 x,y = m(lons, lats)
-m.plot(x, y, 'bo', markersize=10)
+m.plot(x, y, 'ro', markersize=10)
  
     
 labels = ['BC', 'Alberta', 'Saskatchewan', 'Manitoba', 'Ontario', 'Quebec', 'Newfoundland']
@@ -25,6 +25,12 @@ for label, xpt, ypt, x_offset, y_offset in zip(labels, x, y, x_offsets, y_offset
     plt.text(xpt+x_offset, ypt+y_offset, label)
  
 
-plt.show()
+plt.savefig("../output/plot_images/canada map effective degree",format="png")
 
-plt.show()
+"""
+Reference:
+ http://introtopython.org/visualization_earthquakes.html
+ http://chrisalbon.com/python/matplotlib_plot_points_on_map.html
+ http://matplotlib.org/basemap/users/examples.html
+
+"""
