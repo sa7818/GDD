@@ -2,6 +2,7 @@ import sys
 import os.path
 import csv
 import pandas as pd
+import numpy as np
 
 """ A function to fetch a csv file.
 
@@ -55,7 +56,7 @@ def generate_gdd(filename, t_base, t_upper):
     mean_col = csv_df['Mean_Temp']
     date_cols = csv_df[['Year', 'Month','Day']]
     columns = ['Year', 'Month','Day', 'GDD', 'Acc_GDD']
-    df = pd.DataFrame(columns = columns)
+    df = pd.DataFrame(columns=['Year', 'Month','Day', 'GDD', 'Acc_GDD'])
     df['Year'] = date_cols['Year']
     df['Month'] = date_cols['Month']
     df['Day'] = date_cols['Day']
@@ -67,15 +68,15 @@ def generate_gdd(filename, t_base, t_upper):
             gdd = 0
         elif gdd > t_upper:
             gdd = t_upper
-        df['GDD'][i] = gdd
+        df.loc[i,'GDD'] = gdd
         i+=1
     # Calculating ACC_GDD column
     j = 0
     for g in df['GDD']:
         if j == 0:
-            df['Acc_GDD'][j] = df['GDD'][0]
+            df.loc[j,'Acc_GDD'] = df.loc[0,'GDD']
         else:
-            df['Acc_GDD'][j] = float(g) + df['Acc_GDD'][j - 1] 
+            df.loc[j,'Acc_GDD'] = float(g) + df.loc[j-1,'Acc_GDD'] 
         j+=1
     # create a csv out of a dataframe
 
@@ -92,10 +93,10 @@ def generate_gdd(filename, t_base, t_upper):
 
 # Entry point of gdd functionality:
 try:
-    filename = sys.argv[1]
-    tbase = sys.argv[2]
-    tupper = sys.argv[3]
-    generate_gdd(filename, tbase,tupper)
+	filename = sys.argv[1]
+	tbase = sys.argv[2]
+	tupper = sys.argv[3]
+	generate_gdd(filename, tbase,tupper)  
 except:
     print("Enter the parameters correctly")
-
+	
