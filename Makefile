@@ -23,9 +23,9 @@ PLOTFIGSS := $(addsuffix .png, $(FILES))
 
 PLOTFIGS := $(addprefix $(OUTPUT)/,$(PLOTFIGSS))
 
-GDDFILES := $(addprefix GDD-,$(FILES))
+GDDFILES := $(addsuffix .gdd, $(FILES))
 
-GDDFIGSS := $(addsuffix .png, $(GDDFILES))
+GDDFIGSS := $(addsuffix .png, $(FILES))
 
 GDDFIGS := $(addprefix $(OUTPUT)/,$(GDDFIGSS))
 
@@ -51,14 +51,14 @@ report.pdf: $(GDDFIGS) $(PLOTFIGS)
 #<param2> tbase
 #<param3> tupper
 #<param4> temperature type, C: Celsius, F: Fahrenheit
-#<param5> output gdd graph file path and name
-#Description: Calculate GDD for each city and station. Plot gdd graph.
-#Example: python3.5 src/gdd.py ./csv_data/stjohns-500890-2015.csv 10 30 C ./output/GDD-stjohns-500890-2015.png
-$(GDDFIGS):$(PLOTFIGS)
-	echo "Calculate GDD and plot graph"
+#<param5> output gdd file path and name
+#Description: Calculate GDD for each city and station.
+#Example: python3.5 src/gdd.py ./csv_data/stjohns-500890-2015.csv 10 30 ./output/stjohns-500890-2015.gdd
+$(OUTPUT)/$(GDDFILES):$(PLOTFIGS)
+	echo "Calculate GDD"
 	for i in $(FILES); \
 	do \
-		python3.5 $(SRC)/gdd.py $(DATA)/$$i.csv $(TBASE) $(TUPPER) $(TTYPE) $(OUTPUT)/GDD-$$i.png;\
+		python3.5 $(SRC)/gdd.py $(DATA)/$$i.csv $(TBASE) $(TUPPER) $(OUTPUT)/$$i.gdd;\
 	done
 
 #Plot temperature graph for each city and each station
