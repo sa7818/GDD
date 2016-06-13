@@ -11,9 +11,9 @@ SJ=stjohns
 CG=calgary
 TR=toronto
 
-FILES := $(SJ)-500890-2015  $(SJ)-50089-2016 \
-$(CG)-27211-2015 $(CG)-27211-2016 \
-$(TR)-5051-2015 $(TR)-5051-2016
+FILES := 50089_2015  50089_2016 \
+27211_2015 27211_2016 \
+5051_2015 5051_2016
 
 CSVFILESS := $(addsuffix .csv, $(FILES))
 
@@ -88,7 +88,7 @@ $(CSVFILES):
 	echo "Download datafiles"
 	for i in $(CSVFILESS); \
 	do \
-		python3.5 $(SRC)/download.py $(DATA)/$$i; \
+		python3.5 $(SRC)/download.py $$i; \
 	done
 
 
