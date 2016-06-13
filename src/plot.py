@@ -11,6 +11,7 @@ import sys
 fig,ax1=plt.subplots()
 ax2=ax1.twinx()
 
+
 def read_weather(file_name):
     """
     This function is just used for read data(Date/Time,Max_Temp,Min_Temp) from file_name.
