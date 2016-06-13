@@ -38,8 +38,8 @@ To view the web presentation [click here](https://sa7818.github.io/GDD/)
 - Ghasem Alaee Khangha           Email:gak488@mun.ca
 - Faramarz Dorani                Email:fd6713@mun.ca
 - Stanley Uche Godfrey           Email:sug670@mun.ca
-- SharonQSY                      Email:sq5222@mun.ca
-- Lianboli                       Email:ll4734@mun.ca
+- Shuyue Qi                      Email:sq5222@mun.ca
+- Lianbo Li                      Email:ll4734@mun.ca
 - Oluwatosin Ifeoluwa Adelegan   Email:oia133@mun.ca
 
 - File List(Directories):
