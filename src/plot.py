@@ -86,7 +86,7 @@ def read_weather_gdd(file_name):
     data.replace('E', np.nan,inplace=True)
     #To make sure there hasn't estimated data in the data file, if it has replace M to NAN in gdd data file
     data.replace('M', np.nan,inplace=True)
-    #Then Remove all the 'NAN' data in csv data file
+    #Then Remove all the 'NAN' data in gdd data file
     data = data.dropna(how='any')
     #Get the value of third column-month
     month=data['Month']
