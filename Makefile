@@ -43,7 +43,6 @@ report.pdf: $(GDDFIGS) $(PLOTFIGS)
 	#bibtex  ./report/GDD.tex
 	pdflatex ./report/GDD.tex
         
-
 	
 
 #Calculate GDD and plot GDD graph for each city
@@ -93,8 +92,14 @@ $(CSVFILES):
 	done
 
 
+.PHONY: test
+test:
+	echo "Test modules"
+	nosetests $(SRC)/testsuite
+
 
 .PHONY: clean
 clean:
 	rm -rf $(DATA)/*
 	rm -rf $(OUTPUT)/*
+	rm *.pdf

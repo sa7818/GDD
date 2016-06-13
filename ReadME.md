@@ -9,13 +9,13 @@ The goal of this project is to calculate GDD for three cities in Canada (St John
 
     Calculating GDD (via command line program)
 
-    Storing calculations in DB or files
+    Storing calculations in .csv and .gdd files
 
     Creating plot showing an annual cycle of min/max daily temperatures.
 
     Producing reports based on the generated plots.
 
-    Presentation
+    Presentation (Web-based)
 
 <br>
 To view the web presentation [click here](https://sa7818.github.io/GDD/)
@@ -38,8 +38,8 @@ To view the web presentation [click here](https://sa7818.github.io/GDD/)
 - Ghasem Alaee Khangha           Email:gak488@mun.ca
 - Faramarz Dorani                Email:fd6713@mun.ca
 - Stanley Uche Godfrey           Email:sug670@mun.ca
-- SharonQSY                      Email:sq5222@mun.ca
-- Lianboli                       Email:ll4734@mun.ca
+- Shuyue Qi                      Email:sq5222@mun.ca
+- Lianbo Li                      Email:ll4734@mun.ca
 - Oluwatosin Ifeoluwa Adelegan   Email:oia133@mun.ca
 
 - File List(Directories):
@@ -78,4 +78,24 @@ csv_data/
  	GDD.tex
  </pre>
 
- Please feel free to contact us for more information...
+<b>USER GUIDE:<b>
+<p> To run this project, you must have the following packages installed on your python 2.7 or 3x environment:
+<pre>
+	pip
+	pandas
+	sys
+	urllib.request
+</pre>
+</p>
+
+##CLONING THIS REPOSITORY:
+<p> To clone this repository, do the following:
+<pre>
+	cd ~ or cd ~/<Workspace>
+	git clone https://github.com/sa7818/GDD.git
+</pre>
+</p>
+<p><b>N.B:</b> After cloning you need to run <b>make</b> command from the cloned repository to recompile this project(program)
+</br>
+
+<b> Please feel free to contact us for more information...

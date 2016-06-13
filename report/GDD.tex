@@ -33,18 +33,25 @@
 %	TITLE SECTION
 %------------------------------
 \usepackage{titling} 
+
 \newcommand{\HorRule}{\color{DarkGoldenrod} \rule{\linewidth}{1pt}}
-\pretitle{\vspace{-30pt} \begin{flushleft} \HorRule \fontsize{50}{50} \usefont{OT1}{phv}{b}{n} \color{DarkRed} \selectfont} 
+\pretitle{\vspace{-30pt} \begin{flushleft} \HorRule \fontsize{30}{30} \usefont{OT1}{phv}{b}{n} \color{Black} \selectfont} 
 \title{Growing Degree Days in Canada}
+
 \posttitle{\par\end{flushleft}\vskip 0.5em}
-\preauthor{\begin{flushleft}\large \lineskip 0.5em \usefont{OT1}{phv}{b}{sl} \color{DarkRed}} 
-\author{Sara Ayubian\affmark[1]    ,Ghasem Alaee Khangha \affmark[1],    Faramarz Dorani\affmark[1],
-Stanley Uche Godfrey\affmark[1],Oluwatosin Adelegan\affmark[1]
-Sharon QSY\affmark[1],Lianboli\affmark[1]}
+
+\preauthor{\begin{flushleft}\large \lineskip 0.5em \usefont{OT1}{phv}{b}{sl} \color{DarkGreen}} 
+	
+\author{Sara Ayubian\affmark[1]    ,Ghasem Alaee Khangha \affmark[2],    Faramarz Dorani\affmark[3],
+Stanley Uche Godfrey\affmark[4],Oluwatosin Adelegan\affmark[5]
+Shuyue Qi\affmark[6],Lianbo Li\affmark[7]}
 \postauthor{\color{Black} \\
 \centering{Memorial University of Newfoundland}\\\centering{\color{Blue}Instructor: Dr.James Munroe} 
+\titlepic{\includegraphics[width=170mm,height=50mm]{GDD.png}}
 \\
 \centering{Computer Based Research Tools and Application}
+\\
+\centering{Course Project Report}
 \par\end{flushleft}\HorRule}
 \date{Spring 2016} 
 %-------------------------------------------------------------
@@ -84,13 +91,13 @@ Last but not least, using version control(git) and collaboration tools (Github) 
 
 %-----------------------------------------------
 \section{Experiment Procedures}
-The goal of this study is mainly based on team work to split tasks and learn how to use Github repository to present a scientific research and follow specific rules for calculation of GDD which those steps briefly mention here as follow:
+The goal of this study is mainly based on team work to split tasks and learn how to use Github repository to present a scientific research and follow specific rules for the calculation of GDD which those steps are as follow:
 
 \begin{itemize}
 \item Automation for downloading tempreture data.
-\item Extracting required columns from data files.
+\item Extracting required columns from .csv files.
 \item Calculating GDD (via command line program).
-\item Storing calculations in .csv files
+\item Storing calculations in .csv files.
 \item Creating plot showing an annual cycle of min/max daily temperatures.
 \item Producing reports based on the generated plots.
 \item Preparing web Presentation.
@@ -98,9 +105,7 @@ The goal of this study is mainly based on team work to split tasks and learn how
 %------------------------------------------------
 \section{Results}
 The present study worked on three cities in Canada in order to calculate growing degree days for each city and plot them using Python programming. Data have been collected from government page which are available for any years,months,days and hours. 
-
-The result is shown in following diagram for three cities in one year:
-
+A summary of the data that was collected during the past year for Calgary, St.John's, and Toronto can be seen in as follow:
 
 \begin{figure}[h!]
 	\centering
@@ -144,6 +149,7 @@ The result is shown in following diagram for three cities in one year:
 
 
 \section{Conclusion}
+The present study has been done by a group of graduate students to show the application of Python programming and many effectives computations in scientifc research. In this experiment, Daily maximum and minimum temperatures were recorded so that GDD could be calculated once all of the data for the one year was collected for three cities, and accumulated GDD were matched with the growth stage of the crop and plots which have been shown in last section demonstrates the result that we have achieved so far.
 
 %-------------------------
 %	REFERENCE LIST

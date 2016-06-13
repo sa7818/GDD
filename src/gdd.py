@@ -3,6 +3,16 @@ import os.path
 import csv
 import pandas as pd
 
+""" A function to fetch a csv file.
+
+Args:
+	file_name (string): the relative path of a csv file 
+			     which is downloaded from server.
+Returns:
+	DataFrame: this dataframe is returned when the csv file exists in
+		   ../csv_data/ directory.
+
+"""
 def fetch_csv(file_name):
     #Read csv file
     try:
@@ -14,15 +24,36 @@ def fetch_csv(file_name):
         print("Unexpected error:", sys.exc_info()[0])
         raise
 
+""" A function to generate a  *.gdd file in the same directory of ../csv_data/
+
+Args:
+	filename (String): the file name that has be .csv
+	t_base (int):	   this parameter has to be the base temp for gdd.
+	t_upper (int):	   this parameter is as a threshold that 
+			   we use in our calculation.
+
+Returns:
+	string: filename of a *.gdd file
+
+"""
+
+
 def generate_gdd(filename, t_base, t_upper):
-    t_base = int(t_base)
-    t_upper = int(t_upper)
+    tbase = float(t_base)
+    csv_df = pd.DataFrame()
+    if(float(t_upper)  == 0):
+    # We assign a high value beacuse a high value makes this parameter unimportant in our calculations.
+        t_upper = 100
+    else:
+        t_upper = float(t_upper)
+
     if os.path.isfile(filename):
         print("~ Filename: {} exists!".format(filename))
-        csv = fetch_csv(filename)
+        csv_df = fetch_csv(filename)
+
     # Iterate through the fetched file and calculate gdd
-    mean_col = csv['Mean_Temp']
-    date_cols = csv[['Year', 'Month','Day']]
+    mean_col = csv_df['Mean_Temp']
+    date_cols = csv_df[['Year', 'Month','Day']]
     columns = ['Year', 'Month','Day', 'GDD', 'Acc_GDD']
     df = pd.DataFrame(columns = columns)
     df['Year'] = date_cols['Year']
@@ -31,7 +62,7 @@ def generate_gdd(filename, t_base, t_upper):
     i = 0
     # calculating GDD column
     for m in  mean_col:
-        gdd = int(m) - t_base
+        gdd = float(m) - tbase
         if gdd < 0:
             gdd = 0
         elif gdd > t_upper:
@@ -44,14 +75,10 @@ def generate_gdd(filename, t_base, t_upper):
         if j == 0:
             df['Acc_GDD'][j] = df['GDD'][0]
         else:
-            df['Acc_GDD'][j] = int(g) + df['Acc_GDD'][j - 1] 
+            df['Acc_GDD'][j] = float(g) + df['Acc_GDD'][j - 1] 
         j+=1
-    
-    
     # create a csv out of a dataframe
-    
-    
-    #df['GDD'] = date_cols
+
     df = df.fillna(0)
     f_name = filename[:-4]
     f_name = f_name + ".gdd"
@@ -59,11 +86,11 @@ def generate_gdd(filename, t_base, t_upper):
         df.to_csv("../csv_data/" + f_name)
     except:
         print("Something went wrong!")
-    
     print("{0} is created.".format(f_name))
     return f_name
     #print(df)
 
+# Entry point of gdd functionality:
 try:
     filename = sys.argv[1]
     tbase = sys.argv[2]
