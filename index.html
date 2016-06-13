@@ -18,10 +18,22 @@
 
       .myownstyles {background-color: #EEE}
       .red {color: red;}
-      .red .bold {font-weight: bold;}
+      .bold {font-weight: bold;}
       .footnote {font-size: 0.7em; color: gray;}
-    
+      .slide-background {background-color: #252626; }
+      .credits {font-size: 0.9em; color: #ff4d94;}
+      .yellow {color: #ffd633;}
+      .gray {color: gray;}
+      .italic {font-style: italic;}
+      .magnet {color: #ff4d94;}
+      .medium {font-size:x-large;}
+      .imgframe {border:1px solid #021a40; border-radius: 5px; max-height: 500px;}
+      .small {font-size: 0.7em; }
+      .center {float: center;}
+      .bokehframe {border-radius: 5px; border:1px solid #021a40;}
+
     </style>
+
 
     <!-- Including highligh.js library -->
     <!--
@@ -29,156 +41,198 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
     -->
 
-    <!-- 
+    <!-- Enabling code highlights -->
+    <!-- <script>hljs.initHighlightingOnLoad();</script>  -->
     <link rel="stylesheet" type="text/css" href="default.min.css">
     <script type="text/javascript" src="highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script> 
-    -->
+    
+
+    <!-- Enabling bokeh content loading -->
+    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.11.1.min.css" type="text/css" />  
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.11.1.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>    
+    <script> 
+      $(function(){
+        $("#bokehcontent").load("50089_2015_bokeh_min_max.html")
+      });
+      $(function(){
+        $("#bokehcontent2").load("50089_2015_bokeh_gdd.html")
+      });
+    </script>
+    
 
   </head>
   <body>
     <textarea id="source">
 name: GDD
-class: center, middle, inverse
-background-color: #AAA
+class: center, middle, slide-background, yellow
 
 # {{ name }} web-based presentation
-.left[Left-aligned The name of this slide is {{ name }}]
 
-<!-- <br><br><br> --> 
-<!-- #### by [@fd6713] &amp; Gak488 &amp; ll4734 &amp; oia133 &amp; sug670 &amp; sq5222  &amp; sa7818 -->
-<!-- ??? -->
+<br><br><br> <br><br><br> 
+Created by
+
+.credits[fd6713] .gray[&amp;] .credits[gak488] .gray[&amp;] .credits[ll4734] .gray[&amp;] .credits[oia133] .gray[&amp;] .credits[sug670] .gray[&amp;] .credits[sq5222]  .gray[&amp;] .credits[sa7818]
 
 ---
 
 # Agenda
 
-1. Introduction
-2. Downloading data
-3. Extracting required columns
-4. Calculating GDD
-5. Plotting GDD for one or more years
-6. 
-
+####1. Introduction
+####2. Project structure
+####3. Workflow
+####4. Makefile
+####5. Results
 
 ---
-<!-- Next slide -->
+
 # Introduction
-.center[![Centered image](plot2.jpeg "St. Johns Min-Max Temp Plot")]
+.medium[
+This is the web-based presentation of Growing degree-day (GDD) for three cities .gray.italic[St. John's], .gray.italic[Calgary] and .gray.italic[Toronto]. 
 
-
----
-<!-- Next slide -->
-
-# Slide
-
-- bullet 1
---
-
-- bullet 2
-
+The default data are from .magnet.italic[2014] and .magnet.italic[2015] but it's possible to create results of any year. 
+]
 
 ---
-<!-- Next slide -->
 
-class: center
+# Project structure
 
-# Plot
-
-.center[Centered Hello world]
-
----
-# numbering
-
---
-1. Introduction
-
---
-2. Markdown formatting
-
----
-# Content classes
-.footnote[.red.bold[*] Important footnote]
-
-**This text _is extremely_ important.**
-## heading 2
-### heading 3
-#### heading 4
-
-Some basic Git commands are:
-```
-git status
-git add
-git commit
+```bash
+GDD
+|-- csv_data #(Including all the data files)
+|   |-- 50089_2014.csv
+|   |-- 50089_2014.gdd
+|   |-- 50089_2015.csv
+|   `-- 50089_2015.gdd
+|-- output #(Including all the result or plot files)
+|   `-- plot_images
+|       |-- Calgary_2015.png
+|       |-- Calgary_2016.png
+|       `-- St.johns_2015.png
+|-- report
+|   |-- GDD.tex
+|   `-- presentation.html
+|-- src #(Including all the source codes)
+|   |-- testsuite
+|       |-- test_download.py
+|       `-- test_plot.py
+|   |-- download.py
+|   |-- gdd.py
+|   |-- main.py
+|   `-- plot.py
+|-- .gitignore
+|-- GDDRequirements.md
+|-- Makefile
+`-- ReadME.md
 ```
 
 ---
-### Syntax Highlighting
 
-Code:
+# Workflow
 
-```python
-@require_authentication
-def add(a,b):
-  return len(a) + len(b)
-```
+1. Downloading data from server (automatically)
 
-.red.bold[And for ruby]
+2. Extracting required columns from data files
 
-```ruby
-def add(a,b)
-  a + len(b)
-end
-```
+3. Calculating GDD
+
+4. Storing calculations into DB or files
+
+5. Creating plot showing annual cycle of min/max daily temperatures
+
+6. Producing reports based on the generated plots
+
+7. Presentation
 
 ---
-# highlight.js
-<pre><code class="python">@requires_authorization
-def add_ar(lst):
-  return sum(lst)
+
+# Makefile
+
+```Makefile
+#CMSC6950 course project
+vpath %.csv csv_data
+vpath %.png output
+vpath %.py ./src
+SRC=./src
+DATA=./csv_data
+OUTPUT=./output
+
+.PHONY: All
+All: report.pdf $(GDDFIGS) $(PLOTFIGS)
+
+.PHONY: test
+test:
+  echo "Test modules"
+  nosetests $(SRC)/testsuite
+
+.PHONY: clean
+clean:
+  rm -rf $(DATA)/*
+  rm -rf $(OUTPUT)/*
+  rm *.pdf
+
+```
+<!--
+<pre><code class="Makefile"> 
+#CMSC6950 course project
+SRC=./src
 </code></pre>
-
-#### something more
-```python
-def add_ar(lst):
-  return sum(lst)
-```
-
+-->
 
 ---
-<!-- Next slide -->
-# Object Literals
-.remark-slide-content:after {
-content: "";
-position: absolute;
-bottom: 10px;
-right: 10px;
-height: 40px;
-width: 120px;
-background-repeat: no-repeat;
-background-size: contain;
-background-image: url('img1.png;base64,some_strings');
-}
+## Results
+
+.center[
+<img class="imgframe" src="St.johns_2015.png" alt="St. Jonh's 2015">
+]
+.gray.small.center[Plot of min/max tempretures]
 
 ---
-# Presentation
-???
-help notes for presentation. Tapping on P goes to presentaiton mode
----
-count: false
 
-This slide will not be counted.
+.center[
+<img class="imgframe" src="Stjohns_2016.png" alt="St. Jonh's 2016">
+]
+.gray.small.center[Plot of min/max tempretures]
+
+---
+
+.center[
+<img class="imgframe" src="Toronto_2016.png" alt="Toronto 2016">
+]
+.gray.small.center[Plot of min/max tempretures]
+
+---
+
+.center[
+<img class="imgframe" src="Calgary_2016.png" alt="Calgary 2016">
+]
+.gray.small.center[Plot of min/max tempretures]
+
+---
+
+<div class="bokehframe" id="bokehcontent"></div>
+.gray.small.center[Bokeh plot of min_max tempreture for St. John's]
+
+---
+
+<div class="bokehframe" id="bokehcontent2"></div>
+.gray.small.center[Bokeh plot of gdd and acc_gdd for St. John's]
+
+---
+class: center, middle,
+# End
+For more information and exploring the source code go to the [github](https://github.com/sa7818/GDD) page.
 
 
     </textarea>
-    <!-- in case if wanted to use offline. -->
+    <!-- in case if wanted to use offline. 
     <script src="remark-latest.min.js"> </script>
-    
-    <!--
+    -->
+    <!-- -->
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
     </script>
-    -->
     
+
     <script>
       var slideshow = remark.create({
         highlightLanguage: 'python',
