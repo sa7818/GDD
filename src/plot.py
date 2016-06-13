@@ -150,8 +150,10 @@ def plot_gdd(filename1, filename2, filename3):
         grd = plt.grid(True)
         #To automatically update ylim of ax2 when ylim of ax1 changes. 
         ax1.callbacks.connect("ylim_changed", convert_ax_c_to_celsius)
+        #To define the plot label
+        l=i[6:10]+" year at "+i[0:5]
         #To plot gdd
-        ax1.plot(index,convert_c_to_f(accu_gdd_num),label=i[:-4],linewidth=2.5, linestyle="-")  
+        ax1.plot(index,convert_c_to_f(accu_gdd_num),label=l,linewidth=2.5, linestyle="-") 
         #To show the legend
         ax1.legend(loc=2,shadow=True)
         #To add x-axis-label with month
