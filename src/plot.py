@@ -14,7 +14,7 @@ ax2=ax1.twinx()
 
 def read_weather(file_name):
     """
-    This function is just used for read data(Date/Time,Max_Temp,Min_Temp) from file_name.
+    This function is just used for read data(Date/Time,Max_Temp,Min_Temp) to plot max_min from file_name.
     The file_name can be the .csv file
     args:
         file_name (csv data file)
@@ -71,7 +71,7 @@ def plot_maxmin(css_file):
 
 def read_weather_gdd(file_name):
     """
-        This is function for plot gdd for task 4
+        This is function to read data for plot gdd for task 4
     The data read from the above function(read_weather_gdd(file_name)),
     the argv is .gdd data file get it from gdd.py 
     and the return value are month,GDD number and Accumulateed GDD
