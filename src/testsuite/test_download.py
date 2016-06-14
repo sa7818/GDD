@@ -8,10 +8,10 @@ import sys
 
 # including src files to the sys path
 sys.path.insert(0, '../')
-
+print(sys.path)
 
 try:
-	import download2 as dnd
+	import download as dnd
 except Exception as e:
 	raise e
 

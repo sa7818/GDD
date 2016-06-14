@@ -39,7 +39,9 @@ def plot_minmax(fname):
     new_fname =  os.path.dirname(os.path.realpath(__file__)) + "/../csv_data/" + fname[:-4].split('/')[-1] + "_bokeh_min_max.html"
     output_file(new_fname, title="Min_Max plot")
 
-    show(p)
+    #show(p)
+    
+    return fname[:-4].split('/')[-1] + "_bokeh_min_max.html"
 
 """ Plotting the bokeh plot for gdd data """
 def plot_gdd(fname):    
@@ -70,6 +72,8 @@ def plot_gdd(fname):
     output_file(new_fname, title="GDD plot")
 
     show(p)
+
+    return fname[:-4].split('/')[-1] + "_bokeh_gdd.html"
     
 
 #####    

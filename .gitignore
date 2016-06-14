@@ -5,5 +5,7 @@
 *.synctex.gz
 *.aux
 *.pdf
-src/testsuite/__pycache__/*
+*.pyc
+src/testsuite/__pycache__
+__pycache__/
 .DS_Store

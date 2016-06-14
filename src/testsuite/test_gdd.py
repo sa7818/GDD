@@ -1,5 +1,6 @@
 from nose.tools import assert_equal
 import sys
+import os
 
 
 """	
@@ -23,28 +24,40 @@ except Exception as e:
 def test_gdd1():
 	print("GDD: test 1")
 
-	city = 'stjohns'
 	stationid = 50089
 	year = 2016
 	filename = '../../csv_data/' + str(stationid) + '_' + str(year) + '.csv'
 	
-	exp = str(stationid) + '_' + str(year) + '.gdd'	
-	obs = gdd.generate_gdd(filename, t_base, t_upper)
-	
-	assert_equal(exp, obs)
+	if not os.path.isfile(filename):
+		print("File not exists. Thus returning ...")
+		return
 
+	exp = str(stationid) + '_' + str(year) + '.gdd'	
+	obs = gdd.generate_gdd(filename, 10, 30)
+	
+	if not os.path.isfile(obs):
+		print("GDD created file does not exists. Thus returning ...")
+		return
+
+	obs = obs.split('/')[-1]
+
+	assert_equal(exp, obs)
+	print("Test was successful")
 
 """ Test 2, gdd """
 def test_gdd2():
 	print("GDD: test 2")
 
 	city = 'toronto'
-	stationid = 50089
+	stationid = 27211
 	year = 2011
 	filename = '../../csv_data/' + str(stationid) + '_' + str(year) + '.csv'
 	
 	exp = str(stationid) + '_' + str(year) + '.gdd'	
 	obs = gdd.generate_gdd(filename, t_base, t_upper)
-	
+	obs = obs.split('/')[-1]
+
 	assert_equal(exp, obs)
 
+
+test_gdd1()

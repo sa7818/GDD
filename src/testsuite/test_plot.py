@@ -11,14 +11,14 @@ import sys
 
 # including src files to the sys path
 sys.path.insert(0, '../')
-
+#print(sys.path)
 
 # import the plot file
 try:
 	import plot
 except Exception as e:
 	raise e
-
+	#print(e)
 
 
 """ Testing the min/max and gdd plot functions """
