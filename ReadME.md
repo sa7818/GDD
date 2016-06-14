@@ -70,7 +70,7 @@ csv_data/
 	gdd.py 	
 	main.py 
 	plot.py
-
+	analyze_gdd.py
 </pre>
 ------
 <pre>

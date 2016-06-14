@@ -1,10 +1,11 @@
 #CMSC6950 course project
-vpath %.csv csv_data
-vpath %.png output
+vpath %.csv ./csv_data
+vpath %.png ./output
 vpath %.py ./src
 SRC=./src
 DATA=./csv_data
 OUTPUT=./output
+PY=python3.5
 
 #define cicies
 SJ=stjohns
@@ -21,29 +22,46 @@ CSVFILES := $(addprefix $(DATA)/,$(CSVFILESS))
 
 PLOTFIGSS := $(addsuffix .png, $(FILES))
 
-PLOTFIGS := $(addprefix $(OUTPUT)/,$(PLOTFIGSS))
+PLOTFIGS := $(addprefix $(OUTPUT)/plot_images/,$(PLOTFIGSS))
 
-GDDFILES := $(addprefix GDD-,$(FILES))
+GDDFILESS := $(addsuffix .gdd, $(FILES))
 
-GDDFIGSS := $(addsuffix .png, $(GDDFILES))
+GDDFILES := $(addprefix $(DATA)/, $(GDDFILESS))
 
-GDDFIGS := $(addprefix $(OUTPUT)/,$(GDDFIGSS))
+GDDFIGSS := $(addsuffix .png, $(FILES))
+
+GDDFIGS := $(addprefix $(OUTPUT)/plot_images/,$(GDDFIGSS))
+
+BOKEHFILESS := $(addsuffix _bokeh_min_max.csv, $(FILES))
+
+BOKEHFILES := $(addprefix $(DATA)/, $(BOKEHFILESS))
 
 TBASE := 10
 TUPPER := 30
 TTYPE := C
 
 .PHONY: All
-All: report.pdf $(GDDFIGS) $(PLOTFIGS)
+All: report.pdf $(BOKEHFILES)
 
-report.pdf: $(GDDFIGS) $(PLOTFIGS)
+report.pdf: $(GDDFIGS) $(BOKEHFILES)
 	echo "Generate report!"
 	pdflatex ./report/GDD.tex
 	pdflatex ./report/GDD.tex
 	#bibtex  ./report/GDD.tex
 	pdflatex ./report/GDD.tex
         
+$(BOKEHFILES): $(CSVFILES)
+	echo "Bokeh!"
+	for i in $(FILES); \
+	do \
+		$(PY) $(SRC)/bokeh_html.py $$i.csv $(BOKEHFILES);\
+	done
 	
+$(GDDFIGS): $(GDDFILES)
+	for i in $(FILES); \
+	do \
+		$(PY) $(SRC)/plot.py $(DATA)/$$i.gdd;\
+	done
 
 #Calculate GDD and plot GDD graph for each city
 #Usage: python3.5 src/gdd.py <param1> <param2> <param3> <param4> <param5>
@@ -51,14 +69,14 @@ report.pdf: $(GDDFIGS) $(PLOTFIGS)
 #<param2> tbase
 #<param3> tupper
 #<param4> temperature type, C: Celsius, F: Fahrenheit
-#<param5> output gdd graph file path and name
-#Description: Calculate GDD for each city and station. Plot gdd graph.
-#Example: python3.5 src/gdd.py ./csv_data/stjohns-500890-2015.csv 10 30 C ./output/GDD-stjohns-500890-2015.png
-$(GDDFIGS):$(PLOTFIGS)
-	echo "Calculate GDD and plot graph"
+#<param5> output gdd file path and name
+#Description: Calculate GDD for each city and station.
+#Example: python3.5 src/gdd.py ./csv_data/stjohns-500890-2015.csv 10 30 ./output/stjohns-500890-2015.gdd
+$(GDDFILES):$(PLOTFIGS)
+	echo "Calculate GDD"
 	for i in $(FILES); \
 	do \
-		python3.5 $(SRC)/gdd.py $(DATA)/$$i.csv $(TBASE) $(TUPPER) $(TTYPE) $(OUTPUT)/GDD-$$i.png;\
+		$(PY) $(SRC)/gdd.py $$i.csv $(TBASE) $(TUPPER);\
 	done
 
 #Plot temperature graph for each city and each station
@@ -74,7 +92,7 @@ $(PLOTFIGS):$(CSVFILES)
 	echo "Plot temp graphs"
 	for i in $(FILES); \
 	do \
-		python3.5 $(SRC)/plot.py $(DATA)/$$i.csv $(OUTPUT)/$$i.png;\
+		$(PY) $(SRC)/plot.py $(DATA)/$$i.csv;\
 	done
 
 #Download temperature data from web. 
@@ -88,7 +106,7 @@ $(CSVFILES):
 	echo "Download datafiles"
 	for i in $(CSVFILESS); \
 	do \
-		python3.5 $(SRC)/download.py $$i; \
+		$(PY) $(SRC)/download.py $$i; \
 	done
 
 
@@ -101,5 +119,4 @@ test:
 .PHONY: clean
 clean:
 	rm -rf $(DATA)/*
-	rm -rf $(OUTPUT)/*
-	rm *.pdf
+	rm -rf $(OUTPUT)/plot_images/*
