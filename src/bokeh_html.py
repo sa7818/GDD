@@ -1,4 +1,4 @@
-from bokeh.plotting import figure, show, output_file
+from bokeh.plotting import figure, output_file, save
 from bokeh.models import HoverTool, BoxSelectTool
 import pandas as pd
 import numpy as np
@@ -14,7 +14,7 @@ import os
 
 """ Plotting the bokeh plot for min max data """
 def plot_minmax(fname):
-    print("Plotting min max bokeh file")
+    print("Generating min max bokeh file")
 
     data_frame = pd.read_csv(fname, skiprows=0, sep=",", encoding="ISO-8859-1")
 
@@ -39,7 +39,7 @@ def plot_minmax(fname):
     p.circle(xdata, data_frame["Min_Temp"], legend="Min Temp", fill_color="white", size=8)
 
     #new_fname =  os.path.dirname(os.path.realpath(__file__)) + "/../output/" + fname[:-4].split('/')[-1] + "_bokeh_min_max.html"
-    new_fname =  "../output/" + fname[:-4].split('/')[-1] + "_bokeh_min_max.html"
+    new_fname =  os.path.dirname(os.path.realpath(__file__)) + "/../output/" + fname[:-4].split('/')[-1] + "_bokeh_min_max.html"
     output_file(new_fname, title="Min_Max plot")
 
     save(p)
@@ -48,6 +48,8 @@ def plot_minmax(fname):
 
 """ Plotting the bokeh plot for gdd data """
 def plot_gdd(fname):    
+    print("Generating GDD bokeh file")
+
     data_frame = pd.read_csv(fname, skiprows=0, sep=",", encoding="ISO-8859-1")
     
     #TOOLS = [BoxSelectTool(), HoverTool(), "pan,reset, resize"]
@@ -74,7 +76,7 @@ def plot_gdd(fname):
     new_fname =  os.path.dirname(os.path.realpath(__file__)) + "/../output/" + fname[:-4].split('/')[-1] + "_bokeh_gdd.html"
     output_file(new_fname, title="GDD plot")
 
-    show(p)
+    save(p)
 
     return fname[:-4].split('/')[-1] + "_bokeh_gdd.html"
     
@@ -86,16 +88,19 @@ def plot_gdd(fname):
 #fname = '/Users/faramarz/Desktop/CMSC6950/project/GDD/csv_data/50089_2015.gdd'
 #plot_gdd(fname)
 
+# calgary station_id = 50430
+#FILES := 50089_2015  50089_2014 \
+#27211_2014 27211_2014 \
+#50430_2014 50430_2014
+
 try:
 	print("Creating bokeh html file from input data")
 	fname = sys.argv[1]
-	print("File name is {}".format(fname))
 	if fname[-4:] == ".csv":
 		plot_minmax(fname)
 	else:
 		plot_gdd(fname)
-
 except Exception as e:
-	raise e
+	#raise e
 	print(e)
 

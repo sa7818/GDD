@@ -38,7 +38,6 @@ Returns:
 
 """
 
-
 def generate_gdd(filename, t_base, t_upper):
     tbase = float(t_base)
     csv_df = pd.DataFrame()
@@ -81,22 +80,28 @@ def generate_gdd(filename, t_base, t_upper):
     # create a csv out of a dataframe
 
     df = df.fillna(0)
-    f_name = filename[:-4]
+    
+    f_name = os.path.basename(filename[:-4])
     f_name = f_name + ".gdd"
+
     try:
-        df.to_csv("../csv_data/" + f_name)
-    except:
+        df.to_csv(os.path.dirname(os.path.realpath(__file__)) + "/../csv_data/" + f_name)
+    except Exception as e:
         print("Something went wrong!")
+        print(e)
+
     print("{0} is created.".format(f_name))
     return f_name
-    #print(df)
+
 
 # Entry point of gdd functionality:
 try:
-	filename = sys.argv[1]
-	tbase = sys.argv[2]
-	tupper = sys.argv[3]
-	generate_gdd(filename, tbase,tupper)  
-except:
-    print("Enter the parameters correctly")
+    filename = sys.argv[1]
+    tbase = sys.argv[2]
+    tupper = sys.argv[3]
+    generate_gdd(filename, tbase,tupper)  
+except Exception as e:
+    #raise e
+    print(e)
+    
 	

@@ -210,11 +210,8 @@ In this case, it allows at most three input into the function of plot_gdd()
 
 try:
     file_name = sys.argv[1]
-    print("File name " + file_name)
-
-    #file_name = "50089_2015.csv"
     fileformat = file_name[-3:]
-    #print("ff:" + fileformat)
+    
     if fileformat == "csv":
         plot_maxmin(file_name)
     else:
@@ -229,5 +226,4 @@ try:
             plot_gdd(file_name, filename2, filename3)             
 except Exception as e:
     raise e
-    print (e)
     

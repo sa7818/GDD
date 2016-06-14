@@ -21,7 +21,7 @@ def download(stationid, year):
 	
 	fname = "{}_{}_t.csv".format(stationid, year)
 	url = "http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID="+str(stationid)+"&Year="+str(year)+"&Month=8&Day=1&timeframe=2&submit=Download+Data"
-
+	
 	try:
 	    urllib.request.urlretrieve(url, fname)
 	except FileNotFoundError as fnfe:
