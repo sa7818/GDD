@@ -13,7 +13,9 @@ import os
 
 
 """ Plotting the bokeh plot for min max data """
-def plot_minmax(fname):    
+def plot_minmax(fname):
+    print("Plotting min max bokeh file")
+
     data_frame = pd.read_csv(fname, skiprows=0, sep=",", encoding="ISO-8859-1")
 
     #TOOLS = [BoxSelectTool(), HoverTool(), "pan,reset, resize"]
@@ -36,11 +38,12 @@ def plot_minmax(fname):
     p.line(xdata, data_frame["Min_Temp"], legend="Min Temp")
     p.circle(xdata, data_frame["Min_Temp"], legend="Min Temp", fill_color="white", size=8)
 
-    new_fname =  os.path.dirname(os.path.realpath(__file__)) + "/../csv_data/" + fname[:-4].split('/')[-1] + "_bokeh_min_max.html"
+    #new_fname =  os.path.dirname(os.path.realpath(__file__)) + "/../output/" + fname[:-4].split('/')[-1] + "_bokeh_min_max.html"
+    new_fname =  "../output/" + fname[:-4].split('/')[-1] + "_bokeh_min_max.html"
     output_file(new_fname, title="Min_Max plot")
 
-    #show(p)
-    
+    save(p)
+
     return fname[:-4].split('/')[-1] + "_bokeh_min_max.html"
 
 """ Plotting the bokeh plot for gdd data """
@@ -68,7 +71,7 @@ def plot_gdd(fname):
     p.circle(xdata, data_frame["Acc_GDD"], legend="Acc GDD", fill_color="white", size=8)
 
     
-    new_fname =  os.path.dirname(os.path.realpath(__file__)) + "/../csv_data/" + fname[:-4].split('/')[-1] + "_bokeh_gdd.html"
+    new_fname =  os.path.dirname(os.path.realpath(__file__)) + "/../output/" + fname[:-4].split('/')[-1] + "_bokeh_gdd.html"
     output_file(new_fname, title="GDD plot")
 
     show(p)
@@ -84,13 +87,15 @@ def plot_gdd(fname):
 #plot_gdd(fname)
 
 try:
+	print("Creating bokeh html file from input data")
 	fname = sys.argv[1]
+	print("File name is {}".format(fname))
 	if fname[-4:] == ".csv":
 		plot_minmax(fname)
 	else:
 		plot_gdd(fname)
 
 except Exception as e:
-	#raise e
+	raise e
 	print(e)
 

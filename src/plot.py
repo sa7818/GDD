@@ -12,7 +12,8 @@ import os.path
 fig,ax1=plt.subplots()
 ax2=ax1.twinx()
 #output_dir is a directory to save all the output images
-output_dir = "../output/plot_images/"
+#output_dir = "../output/plot_images/"
+output_dir = "../output/"
 
 def read_weather(file_name):
     """
@@ -66,11 +67,17 @@ def plot_maxmin(css_file):
     plt.xlabel("date")
     #Add title to the graph
     plt.title("Min & Max Temp") 
-    #To save the plot with the argument's name 
-    f_name = os.path.basename(css_file[:-3])
-    max_plot=plt.savefig(output_dir + f_name + "png",format="png")
-    #return plt.savefig("min_max_temp.png",format="png")
-    return max_plot
+
+
+    # To save the plot with the argument's name 
+    f_name = os.path.basename(css_file[:-4])
+    
+    # Getting the path and save the plot in the output directory
+    outfile = os.path.dirname(os.path.realpath(__file__)) + "/" + output_dir + f_name + "_minmax.png"
+    print("Plot min_max output file : " + output_dir + f_name + "_minmax.png")
+
+    max_plot = plt.savefig(outfile, format = "png")
+    return f_name + "_minmax.png"
 
 def read_weather_gdd(file_name):
     """
@@ -165,10 +172,14 @@ def plot_gdd(filename1, filename2, filename3):
     ax1.plot(index,convert_c_to_f(np.sum(avg_yrs, axis=0)/len(data_to_plot)),label="Long-Term Average",linewidth=2.5, linestyle="-",color="black")
     #To show the legend
     ax1.legend(loc=2,shadow=True)
+    
     #To get the first argument's name
-    f_name = os.path.basename(filename1[:-3])
-    gdd_plot=plt.savefig(output_dir + "plot_gdd_"+f_name + "png",format="png")
-    return gdd_plot   #Return the plot gdd image with .png format
+    f_name = os.path.basename(filename1[:-4])
+    outfile = os.path.dirname(os.path.realpath(__file__)) + "/" + output_dir + f_name + "_gdd.png"
+    print("Plot GDD output file : " + output_dir + f_name + "_gdd.png")
+
+    gdd_plot = plt.savefig(outfile, format = "png")
+    return output_dir + f_name + "_gdd.png"   #Return the plot gdd image with .png format
     
 
     
@@ -199,6 +210,8 @@ In this case, it allows at most three input into the function of plot_gdd()
 
 try:
     file_name = sys.argv[1]
+    print("File name " + file_name)
+
     #file_name = "50089_2015.csv"
     fileformat = file_name[-3:]
     #print("ff:" + fileformat)
@@ -217,5 +230,4 @@ try:
 except Exception as e:
     raise e
     print (e)
-    print("Enter the arguments correctly!")
     
