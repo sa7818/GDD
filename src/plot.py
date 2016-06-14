@@ -135,13 +135,7 @@ def plot_gdd(filename1, filename2, filename3):
         avg_yrs[cnt] = accu_gdd_num
         cnt = cnt + 1
         #To define labels which will showed in x-axis
-        labels = [month for item in ax1.get_xticklabels()]
-        labels[0] = 'July'
-        labels[1]='August'
-        labels[2]='Septeber'
-        labels[3]='October'
-        labels[4]='November'
-        labels[5]='December'
+        labels=['June','July','August','Septeber','October','November','December']
         #To define x-axis with index
         index = np.arange(0, 365) 
         #To set x-tick-axis with the above labels
