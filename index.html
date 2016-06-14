@@ -105,10 +105,11 @@ GDD
 |   |-- 50089_2015.csv
 |   `-- 50089_2015.gdd
 |-- output #(Including all the result or plot files)
-|   `-- plot_images
-|       |-- Calgary_2015.png
-|       |-- Calgary_2016.png
-|       `-- St.johns_2015.png
+|   |-- 50089_2016_bokeh_min_max.html
+|   |-- 50089_2016_minmax.png
+|   |-- 50430_2014_bokeh_gdd.html
+|   |-- 50430_2014_gdd.png
+|   `-- 50430_2014_minmax.png
 |-- report
 |   |-- GDD.tex
 |   `-- presentation.html
@@ -188,28 +189,46 @@ SRC=./src
 .gray.small.center[Plot of min/max tempretures]
 
 ---
-
+## Plot of min/max tempretures St. John's 2016
 .center[
 <img class="imgframe" src="Stjohns_2016.png" alt="St. Jonh's 2016">
 ]
 .gray.small.center[Plot of min/max tempretures]
 
 ---
-
+## Plot of min/max tempretures Toronto 2016
 .center[
 <img class="imgframe" src="Toronto_2016.png" alt="Toronto 2016">
 ]
 .gray.small.center[Plot of min/max tempretures]
 
 ---
-
+## Plot of min/max tempretures Calgary 2016
 .center[
 <img class="imgframe" src="Calgary_2016.png" alt="Calgary 2016">
 ]
 .gray.small.center[Plot of min/max tempretures]
 
 ---
+## Accumulate GDD for 2014 and 2015
+.center[
+<img class="imgframe" src="plot_gdd_50089_2015.png" alt="Accumulate GDD">
+]
+.gray.small.center[Accumulate GDD for 2014 and 2015]
 
+---
+## Linear regression analysis
+.center[
+<img class="imgframe" src="analyze_gdd.png" alt="Linear regression">
+]
+.gray.small.center[Linear regression analysis on data]
+
+---
+class: center, middle, slide-background, yellow
+# Bokeh embedded html  files
+.magnet[work with them interactively]
+
+---
 <div class="bokehframe" id="bokehcontent"></div>
 .gray.small.center[Bokeh plot of min_max tempreture for St. John's]
 
@@ -222,7 +241,6 @@ SRC=./src
 class: center, middle,
 # End
 For more information and exploring the source code go to the [github](https://github.com/sa7818/GDD) page.
-
 
     </textarea>
     <!-- in case if wanted to use offline. -->
