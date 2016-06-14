@@ -94,12 +94,13 @@ def plot_gdd(fname):
 #50430_2014 50430_2014
 
 try:
-	print("Creating bokeh html file from input data")
-	fname = sys.argv[1]
-	if fname[-4:] == ".csv":
-		plot_minmax(fname)
-	else:
-		plot_gdd(fname)
+	if len(sys.argv) > 1:
+		print("Creating bokeh html file from input data")
+		fname = sys.argv[1]
+		if fname[-4:] == ".csv":
+			plot_minmax(fname)
+		else:
+			plot_gdd(fname)
 except Exception as e:
 	#raise e
 	print(e)

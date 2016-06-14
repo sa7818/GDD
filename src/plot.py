@@ -179,7 +179,7 @@ def plot_gdd(filename1, filename2, filename3):
     print("Plot GDD output file : " + output_dir + f_name + "_gdd.png")
 
     gdd_plot = plt.savefig(outfile, format = "png")
-    return output_dir + f_name + "_gdd.png"   #Return the plot gdd image with .png format
+    return f_name + "_gdd.png"   #Return the plot gdd image with .png format
     
 
     
@@ -209,21 +209,20 @@ In this case, it allows at most three input into the function of plot_gdd()
 """
 
 try:
-    file_name = sys.argv[1]
-    fileformat = file_name[-3:]
-    
-    if fileformat == "csv":
-        plot_maxmin(file_name)
-    else:
-        n = len(sys.argv)
-        if(n == 2):
-            plot_gdd(file_name,  None, None)
-        elif (n == 3):
-            filename2 = sys.argv[2]
-            plot_gdd(file_name, filename2, None)
-        elif (n == 4):         
-            filename3 = sys.argv[3]
-            plot_gdd(file_name, filename2, filename3)             
+    n = len(sys.argv)
+    if n == 2:
+        file_name = sys.argv[1]
+        fileformat = file_name[-3:]        
+        if fileformat == "csv":
+            plot_maxmin(file_name)
+        else:
+            plot_gdd(file_name, None, None)
+    elif (n == 3):
+        filename2 = sys.argv[2]
+        plot_gdd(file_name, filename2, None)
+    elif (n == 4):         
+        filename3 = sys.argv[3]
+        plot_gdd(file_name, filename2, filename3)             
 except Exception as e:
     raise e
     

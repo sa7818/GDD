@@ -1,6 +1,6 @@
 from nose.tools import assert_equal
 import sys
-
+import os
 
 """	
 	Testing the plot function 
@@ -10,8 +10,8 @@ import sys
  """
 
 # including src files to the sys path
-sys.path.insert(0, '../')
-#print(sys.path)
+newpath = os.path.dirname(os.path.realpath(__file__)) + '/../'
+sys.path.insert(0, newpath)
 
 # import the plot file
 try:
@@ -25,30 +25,33 @@ except Exception as e:
 
 """ Test 1, min / max plot """
 def test_plot1():
-	city = 'stjohns'
-	stationid = 50089
-	year = 2016
+    print("Performing test 1 on plot for min max")
 
-	csv_file = '../../csv_data/50089_2014.csv'
-	obs = plot.plot_minmax(csv_file)
+    stationid = 50089
+    year = 2016
 
-	exp = '50089_2014.png'
+    exp = "{}_{}_minmax.png".format(stationid, year)
 
-	assert_equal(exp, obs)
+    filename = os.path.dirname(os.path.realpath(__file__)) + '/../../csv_data/{}_{}.csv'.format(stationid, year)
+    if os.path.isfile(filename):
+        obs = plot.plot_maxmin(filename)
+        assert_equal(exp, obs)
+        print("Test successful")
 
 """Test 2, gdd plot"""
 def test_plot2():
-	city = 'alberta'
-	stationid = 50089
-	year = 2011
+    print("Performing test 2 on plot for gdd")
 
-	csv_file = '../../csv_data/50089_2011.gdd'
-	obs = plot.plot_gdd(csv_file, None, None)
+    stationid = 50089
+    year = 2016
 
-	exp = '50089_2011.png'
+    exp = "{}_{}_gdd.png".format(stationid, year)
 
-	assert_equal(exp, obs)
-
+    filename = os.path.dirname(os.path.realpath(__file__)) + '/../../csv_data/{}_{}.gdd'.format(stationid, year)
+    if os.path.isfile(filename):
+        obs = plot.plot_gdd(filename, None, None)
+        assert_equal(exp, obs)
+        print("Test successful")
 
 #test_plot1()
 #test_plot2()

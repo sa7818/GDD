@@ -96,12 +96,14 @@ def generate_gdd(filename, t_base, t_upper):
 
 # Entry point of gdd functionality:
 try:
-    filename = sys.argv[1]
-    tbase = sys.argv[2]
-    tupper = sys.argv[3]
-    generate_gdd(filename, tbase,tupper)  
+    if len(sys.argv) > 1:
+        filename = sys.argv[1]
+        tbase = sys.argv[2]
+        tupper = sys.argv[3]
+        generate_gdd(filename, tbase,tupper)  
 except Exception as e:
     #raise e
     print(e)
+
     
 	
