@@ -95,7 +95,6 @@ def plot_gdd(fname):
 
 try:
 	if len(sys.argv) > 1:
-		print("Creating bokeh html file from input data")
 		fname = sys.argv[1]
 		if fname[-4:] == ".csv":
 			plot_minmax(fname)

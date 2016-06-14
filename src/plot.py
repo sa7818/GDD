@@ -224,5 +224,5 @@ try:
         filename3 = sys.argv[3]
         plot_gdd(file_name, filename2, filename3)             
 except Exception as e:
-    raise e
-    
+    #raise e
+    print(e)

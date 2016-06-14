@@ -4,15 +4,14 @@ import os
 
 
 """	
-	Testing the plot function 
-	the plot.py file hanndles two kinds of plot: min/max plot and gdd plot
-	few functions are written to test these functions 
-
+	Testing the gdd calculations function 
+	The gdd.py file contains a function for calculating the gdd for each year
+	Two functions are written to test these functions 
  """
 
 # including src files to the sys path
-sys.path.insert(0, '../')
-
+newpath = os.path.dirname(os.path.realpath(__file__)) + '/../'
+sys.path.insert(0, newpath)
 
 try:
 	import gdd
@@ -22,42 +21,33 @@ except Exception as e:
 
 """ Test 1, gdd """
 def test_gdd1():
-	print("GDD: test 1")
+    print("Performing test 1 on gdd calculations")
 
-	stationid = 50089
-	year = 2016
-	filename = '../../csv_data/' + str(stationid) + '_' + str(year) + '.csv'
-	
-	if not os.path.isfile(filename):
-		print("File not exists. Thus returning ...")
-		return
+    stationid = 50089
+    year = 2016
 
-	exp = str(stationid) + '_' + str(year) + '.gdd'	
-	obs = gdd.generate_gdd(filename, 10, 30)
-	
-	if not os.path.isfile(obs):
-		print("GDD created file does not exists. Thus returning ...")
-		return
+    exp = "{}_{}.gdd".format(stationid, year)
 
-	obs = obs.split('/')[-1]
-
-	assert_equal(exp, obs)
-	print("Test was successful")
+    filename = os.path.dirname(os.path.realpath(__file__)) + '/../../csv_data/{}_{}.csv'.format(stationid, year)
+    if os.path.isfile(filename):
+        obs = gdd.generate_gdd(filename, 10, 30)
+        assert_equal(exp, obs)
+        print("Test successful")
 
 """ Test 2, gdd """
 def test_gdd2():
-	print("GDD: test 2")
+    print("Performing test 2 on gdd calculations")
 
-	city = 'toronto'
-	stationid = 27211
-	year = 2011
-	filename = '../../csv_data/' + str(stationid) + '_' + str(year) + '.csv'
-	
-	exp = str(stationid) + '_' + str(year) + '.gdd'	
-	obs = gdd.generate_gdd(filename, t_base, t_upper)
-	obs = obs.split('/')[-1]
+    stationid = 50430
+    year = 2014
 
-	assert_equal(exp, obs)
+    exp = "{}_{}.gdd".format(stationid, year)
 
+    filename = os.path.dirname(os.path.realpath(__file__)) + '/../../csv_data/{}_{}.csv'.format(stationid, year)
+    if os.path.isfile(filename):
+        obs = gdd.generate_gdd(filename, 10, 30)
+        assert_equal(exp, obs)
+        print("Test successful")
 
-test_gdd1()
+#test_gdd1()
+#test_gdd2()
