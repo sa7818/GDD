@@ -8,9 +8,11 @@ from pandas import Series, DataFrame
 import pandas as pd
 import csv
 import sys
+import os.path
 fig,ax1=plt.subplots()
 ax2=ax1.twinx()
-
+#output_dir is a directory to save all the output images
+output_dir = "../output/plot_images/"
 
 def read_weather(file_name):
     """
@@ -65,7 +67,8 @@ def plot_maxmin(css_file):
     #Add title to the graph
     plt.title("Min & Max Temp") 
     #To save the plot with the argument's name 
-    max_plot=plt.savefig(css_file[:-3] + "png",format="png")
+    f_name = os.path.basename(css_file[:-3])
+    max_plot=plt.savefig(output_dir + f_name + "png",format="png")
     #return plt.savefig("min_max_temp.png",format="png")
     return max_plot
 
@@ -162,7 +165,9 @@ def plot_gdd(filename1, filename2, filename3):
     ax1.plot(index,convert_c_to_f(np.sum(avg_yrs, axis=0)/len(data_to_plot)),label="Long-Term Average",linewidth=2.5, linestyle="-",color="black")
     #To show the legend
     ax1.legend(loc=2,shadow=True)
-    gdd_plot=plt.savefig("plot_gdd_"+filename1[:-3] + "png",format="png")
+    #To get the first argument's name
+    f_name = os.path.basename(filename1[:-3])
+    gdd_plot=plt.savefig(output_dir + "plot_gdd_"+f_name + "png",format="png")
     return gdd_plot   #Return the plot gdd image with .png format
     
 
@@ -200,19 +205,17 @@ try:
     if fileformat == "csv":
         plot_maxmin(file_name)
     else:
-        try:
+        n = len(sys.argv)
+        if(n == 2):
+            plot_gdd(file_name,  None, None)
+        elif (n == 3):
             filename2 = sys.argv[2]
-        except:
-            plot_gdd(file_name, None, None)
-        else:            
-            try:
-                filename3 = sys.argv[3]
-            except:
-                plot_gdd(file_name, filename2, None)
-            else:
-                plot_gdd(file_name, filename2, filename3)
-                
+            plot_gdd(file_name, filename2, None)
+        elif (n == 4):         
+            filename3 = sys.argv[3]
+            plot_gdd(file_name, filename2, filename3)             
 except Exception as e:
     raise e
     print (e)
+    print("Enter the arguments correctly!")
     
