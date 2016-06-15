@@ -18,7 +18,7 @@ m.drawcoastlines()
 meridians = np.arange(180.,360.,10.)
 m.drawmeridians(meridians,labels=[0,0,0,1],fontsize=10)
 
-
+ 
 raw_data = {'Year': [2001, 2002, 2003, 2004, 2005],
             'St John\s': [644.6, 549.8, 708.5, 575.8, 616.8],
             'ON Kanata': [1375.5, 1315, 1285, 1150, 1426],
