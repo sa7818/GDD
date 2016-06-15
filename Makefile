@@ -7,10 +7,6 @@ DATA=./csv_data
 OUTPUT=./output
 PY=python3.5
 
-#define cicies
-SJ=stjohns
-CG=calgary
-TR=toronto
 
 FILES := 50089_2015  50089_2016 \
 27211_2015 27211_2016 \
@@ -119,4 +115,4 @@ test:
 .PHONY: clean
 clean:
 	rm -rf $(DATA)/*
-	rm -rf $(OUTPUT)/plot_images/*
+	rm -rf $(OUTPUT)/*
