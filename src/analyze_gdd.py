@@ -9,7 +9,7 @@ import sys
 from scipy import stats
 import numpy as np
 import pylab
-
+ 
 def read_weather_analyze(file_name):
     """
         This is function is to read data for analyze gdd for optional task 6
