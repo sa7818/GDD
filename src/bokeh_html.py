@@ -11,7 +11,7 @@ import os
 	In order to see the results call the functions with a file name as argument
 """
 
-
+ 
 """ Plotting the bokeh plot for min max data """
 def plot_minmax(fname):
     print("Generating min max bokeh file")
