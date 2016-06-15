@@ -126,7 +126,7 @@ def plot_gdd(filename1, filename2, filename3):
     #To remove none in the argv, the data_to_plot is the real argv and get it from user's input
     data_to_plot = [x for x in data_to_plot2 if x is not None]
     #To define a two-dimenstion list to caluclate long-term average gdd
-    avg_yrs = np.ndarray(shape=(2,365), dtype=float)
+    avg_yrs = np.ndarray(shape=(3,365), dtype=float)
     #To define a variable, which will be used in for loop
     cnt = 0
     #To get each file in the data_to_plot
@@ -210,9 +210,11 @@ In this case, it allows at most three input into the function of plot_gdd()
 
 try:
     n = len(sys.argv)
-    file_name = sys.argv[1]
-    if n == 2:
-        fileformat = file_name[-3:]        
+    if(n == 2):
+        file_name = sys.argv[1]
+        #file_name = "50089_2015.csv"
+        fileformat = file_name[-3:]
+        #print("ff:" + fileformat)
         if fileformat == "csv":
             plot_maxmin(file_name)
         else:
@@ -220,9 +222,15 @@ try:
     elif (n == 3):
         filename2 = sys.argv[2]
         plot_gdd(file_name, filename2, None)
-    elif (n == 4):         
+    elif (n == 4):
+        filename2 = sys.argv[2]
         filename3 = sys.argv[3]
-        plot_gdd(file_name, filename2, filename3)             
+        plot_gdd(file_name, filename2, filename3)
+                
 except Exception as e:
-    #raise e
-    print(e)
+    raise e
+    print (e)
+    
+    
+
+    

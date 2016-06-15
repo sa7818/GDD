@@ -2,8 +2,6 @@
 import argparse
 import os.path
 import glob
-from gdd import generate_gdd
-from plot import plot_maxmin
 
 """ This file works as a command-line 
    ./main.py --list
@@ -46,20 +44,21 @@ def main():
 		if(args.cmd == "plot"):
 			conB = True
 
+
 	if args.filename:
 		if os.path.isfile(args.filename):
-			print("~ Filename: {} exists!".format(args.filename))
+			#print("~ Filename: {} exists!".format(args.filename))
 			con1 = True
 			fname = args.filename
 		else:
-			print("~ Filename: {} does not exist!".format(args.filename))
+			#print("~ Filename: {} does not exist!".format(args.filename))
 			con1 = False
 	if args.t_base:
-	    #print("~ TBase: {}".format(args.t_base))
-	    con2 = True
+		#print("~ TBase: {}".format(args.t_base))
+		con2 = True
 	if args.t_upper:
-	    #print("~ TUpper: {}".format(args.t_upper))
-	    con3 = True
+		#print("~ TUpper: {}".format(args.t_upper))
+		con3 = True
 
 	if con1 and con2 and con3:
 		print("file name and number of parameters entered are correct")
@@ -69,9 +68,12 @@ def main():
 
 		if conA == True and conB == False:
 			print("GDD function is called based on the above parameters.")
+			from gdd import generate_gdd
 			generate_gdd(args.filename,args.t_base,args.t_upper)
-		if conA == False and conB == True:
-	        	print("Plot function is called based onte above parameters.")
+	if conB == True and con1 == True:
+			from plot import plot_maxmin
+			plot_maxmin(args.filename)
+
 
 if __name__ == '__main__':main()
 

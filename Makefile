@@ -1,7 +1,10 @@
 #CMSC6950 course project
-vpath %.csv ./csv_data
-vpath %.png ./output
-vpath %.py ./src
+#vpath %.png output
+#vpath %.csv csv_data
+#vpath %.gdd csv_data
+#vpath %.py src
+VPATH = src:csv_data:output
+GPATH = $(VPATH)
 SRC=./src
 DATA=./csv_data
 OUTPUT=./output
@@ -10,13 +13,13 @@ PY=python3.5
 
 FILES := 50089_2015  50089_2016 \
 27211_2015 27211_2016 \
-5051_2015 5051_2016
+50430_2015 50430_2016
 
 CSVFILESS := $(addsuffix .csv, $(FILES))
 
 CSVFILES := $(addprefix $(DATA)/,$(CSVFILESS))
 
-PLOTFIGSS := $(addsuffix .png, $(FILES))
+PLOTFIGSS := $(addsuffix _minmax.png, $(FILES))
 
 PLOTFIGS := $(addprefix $(OUTPUT)/,$(PLOTFIGSS))
 
@@ -24,9 +27,13 @@ GDDFILESS := $(addsuffix .gdd, $(FILES))
 
 GDDFILES := $(addprefix $(DATA)/, $(GDDFILESS))
 
-GDDFIGSS := $(addsuffix .png, $(FILES))
+GDDFIGSS := $(addsuffix _gdd.png, $(FILES))
 
 GDDFIGS := $(addprefix $(OUTPUT)/,$(GDDFIGSS))
+
+ANALYZEGDDFIGSS := $(addsuffix _analyze_gdd.png, $(FILES))
+
+ANALYZEGDDFIGS := $(addprefix $(OUTPUT)/,$(ANALYZEGDDFIGSS))
 
 BOKEHFILESS := $(addsuffix _bokeh_min_max.csv, $(FILES))
 
@@ -37,27 +44,18 @@ TUPPER := 30
 TTYPE := C
 
 .PHONY: All
-All: report.pdf $(BOKEHFILES)
+All: $(CSVFILESS) $(GDDFILESS) $(PLOTFIGSS) $(GDDFIGSS) $(ANALYZEGDDFIGSS) $(BOKEHFILESS) report.pdf
 
-report.pdf: $(GDDFIGS) $(BOKEHFILES)
-	echo "Generate report!"
-	pdflatex ./report/GDD.tex
-	pdflatex ./report/GDD.tex
-	#bibtex  ./report/GDD.tex
-	pdflatex ./report/GDD.tex
-        
-$(BOKEHFILES): $(CSVFILES)
-	echo "Bokeh!"
-	for i in $(FILES); \
-	do \
-		$(PY) $(SRC)/bokeh_html.py $$i.csv $(BOKEHFILES);\
-	done
-	
-$(GDDFIGS): $(GDDFILES)
-	for i in $(FILES); \
-	do \
-		$(PY) $(SRC)/plot.py $(DATA)/$$i.gdd;\
-	done
+#Download temperature data from web. 
+#Usage: python3.5 src/download.py <param1>
+#<param1> csv data file path and name 
+#Description: The parameter contains storage path and file name. download.py
+#could store the data to assigned path and file. If the file does not exist,
+#download.py should creat data file.
+#Example: python3.5 src/download.py ./csv_data/stjohns-500890-2015.csv
+$(CSVFILESS):
+	echo "Download datafiles"
+	$(PY) $(SRC)/download.py $(subst csv_data/,,$@)
 
 #Calculate GDD and plot GDD graph for each city
 #Usage: python3.5 src/gdd.py <param1> <param2> <param3> <param4> <param5>
@@ -68,13 +66,10 @@ $(GDDFIGS): $(GDDFILES)
 #<param5> output gdd file path and name
 #Description: Calculate GDD for each city and station.
 #Example: python3.5 src/gdd.py ./csv_data/stjohns-500890-2015.csv 10 30 ./output/stjohns-500890-2015.gdd
-$(GDDFILES):$(PLOTFIGS)
+$(GDDFILESS):%.gdd:%.csv
 	echo "Calculate GDD"
-	for i in $(FILES); \
-	do \
-		$(PY) $(SRC)/gdd.py $$i.csv $(TBASE) $(TUPPER);\
-	done
-
+	$(PY) $(SRC)/gdd.py $(addprefix $(DATA)/,$<) $(TBASE) $(TUPPER)
+   
 #Plot temperature graph for each city and each station
 #Usage: python3.5 src/plot.py <param1> <param2>
 #<param1> input csv data file name and path
@@ -83,28 +78,26 @@ $(GDDFILES):$(PLOTFIGS)
 #for each .csv file. The output graph file name and path could be got from
 #the second parameter
 #Example: python3.5 src/plot.py ./csv_data/stjohns-500890-2015.csv ./output/stjohns-500890-2015.png
-$(PLOTFIGS):$(CSVFILES) 
-#$(PLOTFIGS):%.png:%.csv
+$(PLOTFIGSS):%_minmax.png:%.csv
 	echo "Plot temp graphs"
-	for i in $(FILES); \
-	do \
-		$(PY) $(SRC)/plot.py $(DATA)/$$i.csv;\
-	done
+	$(PY) $(SRC)/plot.py $(addprefix $(DATA)/,$<)
 
-#Download temperature data from web. 
-#Usage: python3.5 src/download.py <param1>
-#<param1> csv data file path and name 
-#Description: The parameter contains storage path and file name. download.py
-#could store the data to assigned path and file. If the file does not exist,
-#download.py should creat data file.
-#Example: python3.5 src/download.py ./csv_data/stjohns-500890-2015.csv
-$(CSVFILES):
-	echo "Download datafiles"
-	for i in $(CSVFILESS); \
-	do \
-		$(PY) $(SRC)/download.py $$i; \
-	done
+$(GDDFIGSS):%_gdd.png:%.gdd
+	$(PY) $(SRC)/plot.py $(addprefix $(DATA)/,$(subst csv_data/,,$<))
+$(ANALYZEGDDFIGSS):%_analyze_gdd.png:%.csv
+	$(PY) $(SRC)/analyze_gdd.py $(addprefix $(DATA)/,$<)
+	mv analyze_gdd.png $(OUTPUT)/$(subst .csv,,$<)_analyze_gdd.png
 
+$(BOKEHFILESS):%_bokeh_min_max.csv:%.csv
+	echo "Bokeh!"
+	$(PY) $(SRC)/bokeh_html.py $(addprefix $(DATA)/,$(subst csv_data/,,$<))
+
+report.pdf:
+	echo "Generate report!"
+	pdflatex ./report/GDD.tex
+	pdflatex ./report/GDD.tex
+	#bibtex  ./report/GDD.tex
+	pdflatex ./report/GDD.tex
 
 .PHONY: test
 test:
@@ -116,3 +109,5 @@ test:
 clean:
 	rm -rf $(DATA)/*
 	rm -rf $(OUTPUT)/*
+	rm *.png
+	rm *.pdf
