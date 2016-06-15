@@ -50,11 +50,13 @@ def generate_gdd(filename, t_base, t_upper):
     if os.path.isfile(filename):
         print("~ Filename: {} exists!".format(filename))
         csv_df = fetch_csv(filename)
+    else:
+         print("~ Filename: {} does not exist!".format(filename))
+         return
 
     # Iterate through the fetched file and calculate gdd
     mean_col = csv_df['Mean_Temp']
     date_cols = csv_df[['Year', 'Month','Day']]
-    columns = ['Year', 'Month','Day', 'GDD', 'Acc_GDD']
     df = pd.DataFrame(columns=['Year', 'Month','Day', 'GDD', 'Acc_GDD'])
     df['Year'] = date_cols['Year']
     df['Month'] = date_cols['Month']
@@ -62,6 +64,8 @@ def generate_gdd(filename, t_base, t_upper):
     i = 0
     # calculating GDD column
     for m in  mean_col:
+        if m == '':
+            m = 0
         gdd = float(m) - tbase
         if gdd < 0:
             gdd = 0
@@ -98,11 +102,21 @@ def generate_gdd(filename, t_base, t_upper):
 try:
     if len(sys.argv) > 1:
         filename = sys.argv[1]
-        tbase = sys.argv[2]
-        tupper = sys.argv[3]
+        n = len(sys.argv)
+        if (n == 2):
+            # default values for these two parameters
+            tbase = 10
+            tupper = 30
+        elif (n == 3):
+            tbase = sys.argv[2]
+            tupper = 30
+        else:
+            tbase = sys.argv[2]
+            tupper = sys.argv[3]
         generate_gdd(filename, tbase,tupper)  
 except Exception as e:
     #raise e
+    print("Exception!")
     print(e)
 
     

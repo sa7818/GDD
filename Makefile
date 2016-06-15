@@ -10,27 +10,27 @@ PY=python3.5
 
 FILES := 50089_2015  50089_2016 \
 27211_2015 27211_2016 \
-5051_2015 5051_2016
+50430_2015 50430_2014
 
 CSVFILESS := $(addsuffix .csv, $(FILES))
 
 CSVFILES := $(addprefix $(DATA)/,$(CSVFILESS))
 
-PLOTFIGSS := $(addsuffix .png, $(FILES))
+PLOTFIGSS := $(addsuffix _minmax.png, $(FILES))
 
-PLOTFIGS := $(addprefix $(OUTPUT)/plot_images/,$(PLOTFIGSS))
+PLOTFIGS := $(addprefix $(OUTPUT)/,$(PLOTFIGSS))
 
 GDDFILESS := $(addsuffix .gdd, $(FILES))
 
 GDDFILES := $(addprefix $(DATA)/, $(GDDFILESS))
 
-GDDFIGSS := $(addsuffix .png, $(FILES))
+GDDFIGSS := $(addsuffix _gdd.png, $(FILES))
 
-GDDFIGS := $(addprefix $(OUTPUT)/plot_images/,$(GDDFIGSS))
+GDDFIGS := $(addprefix $(OUTPUT)/,$(GDDFIGSS))
 
-BOKEHFILESS := $(addsuffix _bokeh_min_max.csv, $(FILES))
+BOKEHFILESS := $(addsuffix _bokeh_min_max.html, $(FILES))
 
-BOKEHFILES := $(addprefix $(DATA)/, $(BOKEHFILESS))
+BOKEHFILES := $(addprefix $(OUTPUT)/, $(BOKEHFILESS))
 
 TBASE := 10
 TUPPER := 30
@@ -50,7 +50,7 @@ $(BOKEHFILES): $(CSVFILES)
 	echo "Bokeh!"
 	for i in $(FILES); \
 	do \
-		$(PY) $(SRC)/bokeh_html.py $$i.csv $(BOKEHFILES);\
+		$(PY) $(SRC)/bokeh_html.py  $(DATA)/$$i.csv;\
 	done
 	
 $(GDDFIGS): $(GDDFILES)
@@ -72,7 +72,7 @@ $(GDDFILES):$(PLOTFIGS)
 	echo "Calculate GDD"
 	for i in $(FILES); \
 	do \
-		$(PY) $(SRC)/gdd.py $$i.csv $(TBASE) $(TUPPER);\
+		$(PY) $(SRC)/gdd.py  $(DATA)/$$i.csv $(TBASE) $(TUPPER);\
 	done
 
 #Plot temperature graph for each city and each station
