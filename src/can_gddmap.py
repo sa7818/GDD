@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+#Ref: http://introtopython.org/visualization_earthquakes.html
 # define Lambert Conformal basemap.
 m = Basemap(llcrnrlon=-147.9927,llcrnrlat=45.49,urcrnrlon=-36.4459,urcrnrlat=72.8125,
             projection='lcc',resolution='c', area_thresh = 10000.0,width=12000,height=9000,lat_0=54.2812865,lon_0=-116.,lat_1=-4.)
