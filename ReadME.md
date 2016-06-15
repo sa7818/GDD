@@ -101,4 +101,13 @@ csv_data/
 <p><b>N.B:</b> After cloning you need to run <b>make</b> command from the cloned repository to recompile this project(program)
 </br>
 
+##TO RUN THE EFFECTIVE DEGREE:
+<pre>
+	cd src
+	python3.5 can_gddmap.py 
+<br>
+<p><b>TO view the effective map go to output directory under the repository and open the effec_degreeCanada.png<b>
+</pre>
+
+
 <b> Please feel free to contact us for more information...
