@@ -94,6 +94,8 @@ csv_data/
 <pre>
 	cd ~ or cd ~/<Workspace>
 	git clone https://github.com/sa7818/GDD.git
+	make clean
+	make
 </pre>
 </p>
 <p><b>N.B:</b> After cloning you need to run <b>make</b> command from the cloned repository to recompile this project(program)
