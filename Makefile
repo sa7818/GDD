@@ -18,7 +18,7 @@ CSVFILES := $(addprefix $(DATA)/,$(CSVFILESS))
 
 PLOTFIGSS := $(addsuffix .png, $(FILES))
 
-PLOTFIGS := $(addprefix $(OUTPUT)/plot_images/,$(PLOTFIGSS))
+PLOTFIGS := $(addprefix $(OUTPUT)/,$(PLOTFIGSS))
 
 GDDFILESS := $(addsuffix .gdd, $(FILES))
 
@@ -26,7 +26,7 @@ GDDFILES := $(addprefix $(DATA)/, $(GDDFILESS))
 
 GDDFIGSS := $(addsuffix .png, $(FILES))
 
-GDDFIGS := $(addprefix $(OUTPUT)/plot_images/,$(GDDFIGSS))
+GDDFIGS := $(addprefix $(OUTPUT)/,$(GDDFIGSS))
 
 BOKEHFILESS := $(addsuffix _bokeh_min_max.csv, $(FILES))
 
