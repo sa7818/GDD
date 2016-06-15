@@ -210,8 +210,8 @@ In this case, it allows at most three input into the function of plot_gdd()
 
 try:
     n = len(sys.argv)
+    file_name = sys.argv[1]
     if n == 2:
-        file_name = sys.argv[1]
         fileformat = file_name[-3:]        
         if fileformat == "csv":
             plot_maxmin(file_name)
